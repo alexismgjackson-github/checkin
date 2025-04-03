@@ -1,0 +1,153 @@
+:root {
+  --font-primary: "Geist", sans-serif;
+  --font-secondary: "Lora", serif;
+  --color-extralight: #fff;
+  --color-light: #f0eee6;
+  --color-medium: #60584c;
+  --color-bold: #2a2114;
+  --color-error: #ff0000;
+  --color-opt-1: #264653; /* satisfied */
+  --color-opt-2: #287271; /* excited */
+  --color-opt-3: #2a9d8f; /* calm */
+  --color-opt-4: #8ab17d; /* content */
+  --color-opt-5: #e9c46a; /* stressed */
+  --color-opt-6: #f4a261; /* worried */
+  --color-opt-7: #ee8959; /* frustrated */
+  --color-opt-8: #e76f51; /* sad */
+  --color: #988d7c;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+html:focus-within {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-light);
+  color: var(--color-bold);
+  font-family: var(--font-primary);
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-secondary);
+  font-weight: 400;
+}
+
+h1 {
+  font-size: 2.8rem;
+}
+
+h2 {
+  font-size: 2.4rem;
+}
+
+h3 {
+  font-size: 2rem;
+}
+
+p,
+a,
+input,
+button,
+label,
+ul {
+  font-size: 1.6rem;
+  font-weight: 400;
+}
+
+input,
+button {
+  border: none;
+  border-radius: 0.5rem;
+  font-family: var(--font-primary);
+  padding: 1rem 1.5rem;
+  width: 100%;
+}
+
+input {
+  background-color: var(--color-extralight);
+  border: 1px solid var(--color-medium);
+  color: var(--color-bold);
+}
+
+::placeholder {
+  color: var(--color-bold);
+}
+
+button {
+  background-color: var(--color-medium);
+  color: var(--color-extralight);
+  font-family: var(--font-secondary);
+}
+
+button:hover {
+  cursor: pointer;
+  opacity: 0.5;
+}
+
+p {
+  font-weight: 400;
+  line-height: 2.8rem;
+}
+
+a {
+  text-decoration: none;
+}
+
+li {
+  font-weight: 400;
+  list-style: none;
+}
+
+img {
+  border-radius: 1rem;
+  width: 100%;
+}
+
+:disabled {
+  opacity: 0.5rem;
+}
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+  h1 {
+    font-size: 3.2rem;
+  }
+
+  h2 {
+    font-size: 2.8rem;
+  }
+
+  h3 {
+    font-size: 2.4rem;
+  }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+}

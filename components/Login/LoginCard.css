@@ -1,0 +1,70 @@
+.login-card {
+  background-color: var(--color-extralight);
+  border: 0.75px solid #aea598;
+  border-radius: 1rem;
+  display: grid;
+  gap: 3rem;
+  margin: 2rem auto auto auto;
+  max-width: 50rem;
+  padding: 4rem 2rem;
+}
+
+.login-form {
+  display: grid;
+  gap: 2rem;
+}
+
+.login-form label {
+  font-size: 1.4rem;
+}
+
+.login-form input {
+  margin-top: 0.5rem;
+}
+
+.login-btn {
+  border-radius: 2rem;
+}
+
+.link-to-create-account {
+  font-size: 1.4rem;
+}
+
+.create-account-link {
+  color: #b7afa4;
+  font-weight: 600;
+  text-decoration: underline;
+}
+
+.create-account-link:hover {
+  cursor: pointer;
+}
+
+hr {
+  border: 0.75px solid #d7d2cc;
+}
+
+.continue-with-google-btn {
+  background-color: var(--color-bold);
+  border-radius: 2rem;
+}
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+}

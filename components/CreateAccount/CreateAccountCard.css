@@ -1,0 +1,61 @@
+.create-account-card {
+  background-color: var(--color-extralight);
+  border: 0.75px solid #aea598;
+  border-radius: 1rem;
+  display: grid;
+  gap: 3rem;
+  margin: 2rem auto auto auto;
+  max-width: 50rem;
+  padding: 4rem 2rem;
+}
+
+.create-account-form {
+  display: grid;
+  gap: 2rem;
+}
+
+.create-account-form label {
+  font-size: 1.4rem;
+}
+
+.create-account-form input {
+  margin-top: 0.5rem;
+}
+
+.create-account-btn {
+  border-radius: 2rem;
+}
+
+.link-to-login {
+  font-size: 1.4rem;
+}
+
+.login-link {
+  color: #b7afa4;
+  font-weight: 600;
+  text-decoration: underline;
+}
+
+.login-link:hover {
+  cursor: pointer;
+}
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+}
