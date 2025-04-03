@@ -45,8 +45,16 @@ hr {
 }
 
 .continue-with-google-btn {
+  align-items: center;
   background-color: var(--color-bold);
   border-radius: 2rem;
+  display: flex;
+  justify-content: center;
+}
+
+.google-icon {
+  margin-left: 1rem;
+  width: 2rem;
 }
 
 /* Extra small devices (phones, 600px and down) */

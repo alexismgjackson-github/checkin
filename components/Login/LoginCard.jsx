@@ -47,6 +47,11 @@ export default function LoginCard() {
         <hr />
         <button className="continue-with-google-btn">
           Continue with Google
+          <img
+            src="./assets/icons/google.svg"
+            alt="Google icon"
+            className="google-icon"
+          />
         </button>
       </div>
     </>
