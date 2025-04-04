@@ -3,7 +3,7 @@
   border: 0.75px solid #aea598;
   border-radius: 1rem;
   display: grid;
-  gap: 3rem;
+  gap: 2rem;
   margin: 2rem auto auto auto;
   max-width: 50rem;
   padding: 4rem 2rem;
@@ -14,8 +14,26 @@
   gap: 2rem;
 }
 
-.login-form label {
+.login-card-message {
   font-size: 1.4rem;
+  font-style: italic;
+  height: 1.6rem;
+}
+
+.login-email-header,
+.login-password-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.login-form label {
+  font-size: 1.6rem;
+}
+
+.login-email-input-message,
+.login-password-input-message {
+  font-size: 1.4rem;
+  font-style: italic;
 }
 
 .login-form input {
@@ -37,6 +55,7 @@
 }
 
 .create-account-link:hover {
+  color: var(--color-medium);
   cursor: pointer;
 }
 
@@ -53,26 +72,6 @@ hr {
 }
 
 .google-icon {
-  margin-left: 1rem;
+  margin-right: 1rem;
   width: 2rem;
-}
-
-/* Extra small devices (phones, 600px and down) */
-@media only screen and (max-width: 600px) {
-}
-
-/* Small devices (portrait tablets and large phones, 600px and up) */
-@media only screen and (min-width: 600px) {
-}
-
-/* Medium devices (landscape tablets, 768px and up) */
-@media only screen and (min-width: 768px) {
-}
-
-/* Large devices (laptops/desktops, 992px and up) */
-@media only screen and (min-width: 992px) {
-}
-
-/* Extra large devices (large laptops and desktops, 1200px and up) */
-@media only screen and (min-width: 1200px) {
 }

@@ -14,7 +14,6 @@
   --color-opt-6: #f4a261; /* worried */
   --color-opt-7: #ee8959; /* frustrated */
   --color-opt-8: #e76f51; /* sad */
-  --color: #988d7c;
 }
 
 *,
@@ -48,6 +47,7 @@ h3 {
 
 h1 {
   font-size: 2.8rem;
+  font-weight: 500;
 }
 
 h2 {
@@ -95,7 +95,7 @@ button {
 
 button:hover {
   cursor: pointer;
-  opacity: 0.5;
+  opacity: 0.675;
 }
 
 p {
@@ -119,6 +119,10 @@ img {
 
 :disabled {
   opacity: 0.5rem;
+}
+
+.animate__animated.animate__fadeIn {
+  --animate-duration: 1.5s;
 }
 
 /* Extra small devices (phones, 600px and down) */

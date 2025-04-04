@@ -1,9 +1,23 @@
+import { useNavigate } from "react-router";
 import "./Home.css";
 
-export default function Home() {
+export default function Home(props) {
+  //// navigate to login page on successful logout
+
+  const navigate = useNavigate();
+
+  function handleClick() {
+    navigate(`/`);
+  }
+
   return (
     <>
-      <h1>Home page</h1>
+      <div className="home-page-container animate__animated animate__fadeIn">
+        <h1>Home page</h1>
+        <span className="log-out" onClick={handleClick}>
+          log out
+        </span>
+      </div>
     </>
   );
 }
