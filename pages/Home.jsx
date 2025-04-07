@@ -1,4 +1,9 @@
 import { useNavigate } from "react-router";
+import EmotionalStateButtons from "../components/Home/EmotionalStateButtons";
+import CheckInForm from "../components/Home/CheckInForm";
+import CheckInsList from "../components/Home/CheckInsList";
+import FilterButtons from "../components/Home/FilterButtons";
+import CheckInModal from "../components/Home/CheckInModal";
 import "./Home.css";
 
 export default function Home({ auth, signOut }) {
@@ -12,7 +17,7 @@ export default function Home({ auth, signOut }) {
       .then(() => {
         // if the logout is successful - delays the redirection to login page by 2 seconds
 
-        console.log(`User successfully logged out of the app.`);
+        console.log(`User successfully logged out of the app`);
         setTimeout(() => {
           navigate(`/`);
         }, 2000); // 2 seconds
@@ -21,7 +26,7 @@ export default function Home({ auth, signOut }) {
         // if the logout fails -  the error message is console logged
 
         console.error(error.message);
-        console.log(`User failed to logout of the app.`);
+        console.log(`User failed to logout of the app`);
       });
   }
 
@@ -32,6 +37,11 @@ export default function Home({ auth, signOut }) {
         <span className="log-out" onClick={logOut}>
           log out
         </span>
+        <EmotionalStateButtons />
+        <CheckInForm />
+        <CheckInsList />
+        <FilterButtons />
+        <CheckInModal />
       </div>
     </>
   );
