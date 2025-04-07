@@ -24,7 +24,6 @@ export default function Home({ auth, signOut }) {
         console.log(`User failed to logout of the app.`);
       });
   }
-  //// navigate to login page on successful logout
 
   return (
     <>
