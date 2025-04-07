@@ -1,37 +1,68 @@
 import { useNavigate } from "react-router";
 import "./LoginCard.css";
 
-export default function LoginCard(props) {
-  //// showLoginError = "please enter valid credientials"
+export default function LoginCard({
+  signInWithEmailAndPassword,
+  auth,
+  email,
+  password,
+  loginMessage,
+  setEmail,
+  setPassword,
+  setLoginMessage,
+}) {
+  // signs in the user with firebase authentication using valid credentials
 
-  //// showLoginEmailError - "please enter a valid email address"
+  const logInWithUserCredentials = (event) => {
+    event.preventDefault();
 
-  //// showLoginPasswordError - "please enter a valid password"
+    signInWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        // if the login is successful - delays the redirection to home page by 2 seconds
+        // & clear input fields / messages
 
-  //// navigate to home page on successful login
+        const user = userCredential.user;
+        console.log(`User successfully logged in`);
+        setTimeout(() => {
+          navigate(`/home`);
+        }, 2000); // 2 seconds
+        setEmail("");
+        setPassword("");
+        setLoginMessage("");
+      })
+      .catch((error) => {
+        // if the login fails - error code/message are console logged and login message is displayed
+
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log(`${errorCode} : ${errorMessage}`);
+        console.log(`User's log-in credentials failed`);
+        setLoginMessage("Please enter valid user credentials!");
+      });
+  };
+
+  // navigates the user to the create account page and resets form-related states
 
   const navigate = useNavigate();
 
   function handleClick() {
     navigate(`/account`);
-  }
-
-  function handleSubmit() {
-    navigate(`/home`);
+    setEmail("");
+    setPassword("");
+    setLoginMessage("");
   }
 
   return (
     <>
       <div className="login-card animate__animated animate__fadeIn">
         <h1 className="login-heading">Welcome Back!</h1>
-        <form className="login-form" onSubmit={handleSubmit}>
-          <span className="login-card-message"></span>
+        <form className="login-form" onSubmit={logInWithUserCredentials}>
+          <span className="login-card-message error">{loginMessage}</span>
           <div className="login-email">
             <div className="login-email-header">
               <label className="login-email-label" htmlFor="loginEmail">
                 Email
               </label>
-              <span className="login-email-input-message"></span>
             </div>
             <input
               type="email"
@@ -40,6 +71,8 @@ export default function LoginCard(props) {
               pattern="[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$"
               spellCheck="false"
               autoComplete="off"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               required
             />
           </div>
@@ -48,12 +81,13 @@ export default function LoginCard(props) {
               <label className="login-password-label" htmlFor="loginPassword">
                 Password
               </label>
-              <span className="login-password-input-message"></span>
             </div>
             <input
               type="password"
               name="loginPassword"
               id="loginPassword"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
               required
             />
           </div>

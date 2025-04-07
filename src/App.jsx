@@ -11,59 +11,20 @@ import Login from "../pages/Login.jsx";
 import CreateAccount from "../pages/CreateAccount.jsx";
 import Home from "../pages/Home.jsx";
 
-// https://www.gstatic.com/firebasejs/11.6.0/firebase-app.js
-// https://www.gstatic.com/firebasejs/11.6.0/firebase-auth.js
-// https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore.js
-
 export default function App() {
   const [email, setEmail] = useState("");
 
   const [password, setPassword] = useState("");
 
+  const [loginMessage, setLoginMessage] = useState("");
+
+  const [createAcctMessage, setCreateAcctMessage] = useState("");
+
   const [emailMessage, setEmailMessage] = useState("");
 
   const [passwordMessage, setPasswordMessage] = useState("");
 
-  const createUserCredientials = (email, password) => {
-    createUserWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        // Signed up
-        const user = userCredential.user;
-        console.log(`${user} successfully created an account`);
-      })
-      .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        console.log(`${errorCode} : ${errorMessage}`);
-        console.log(`User's account creation failed`);
-      });
-  };
-
-  const logInWithUserCredientials = (email, password) => {
-    signInWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        // Signed in
-        const user = userCredential.user;
-        console.log(`${user} successfully logged in`);
-      })
-      .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        console.log(`${errorCode} : ${errorMessage}`);
-        console.log(`User's log-in credientials failed`);
-      });
-  };
-
-  function logOut() {
-    signOut(auth)
-      .then(() => {
-        // Sign-out successful
-      })
-      .catch((error) => {
-        console.error(error.message);
-        // An error happened
-      });
-  }
+  const [isSuccessful, setIsSuccessful] = useState(null);
 
   return (
     <>
@@ -74,13 +35,16 @@ export default function App() {
               path="/"
               element={
                 <Login
-                  signInWithUserCredientials={logInWithUserCredientials}
+                  signInWithEmailAndPassword={signInWithEmailAndPassword}
+                  auth={auth}
                   email={email}
                   password={password}
                   emailMessage={emailMessage}
                   passwordMessage={passwordMessage}
+                  loginMessage={loginMessage}
                   setEmail={setEmail}
                   setPassword={setPassword}
+                  setLoginMessage={setLoginMessage}
                   setEmailMessage={setEmailMessage}
                   setPasswordMessage={setPasswordMessage}
                 />
@@ -90,19 +54,29 @@ export default function App() {
               path="/account"
               element={
                 <CreateAccount
-                  createUserCredientials={createUserCredientials}
+                  createUserWithEmailAndPassword={
+                    createUserWithEmailAndPassword
+                  }
+                  auth={auth}
                   email={email}
                   password={password}
                   emailMessage={emailMessage}
                   passwordMessage={passwordMessage}
+                  createAcctMessage={createAcctMessage}
                   setEmail={setEmail}
                   setPassword={setPassword}
+                  setCreateAcctMessage={setCreateAcctMessage}
                   setEmailMessage={setEmailMessage}
                   setPasswordMessage={setPasswordMessage}
+                  isSuccessful={isSuccessful}
+                  setIsSuccessful={setIsSuccessful}
                 />
               }
             />
-            <Route path="/home" element={<Home logOut={logOut} />} />
+            <Route
+              path="/home"
+              element={<Home auth={auth} signOut={signOut} />}
+            />
           </Route>
         </Routes>
       </BrowserRouter>

@@ -56,5 +56,6 @@
 }
 
 .login-link:hover {
+  color: var(--color-medium);
   cursor: pointer;
 }
