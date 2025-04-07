@@ -6,20 +6,20 @@ export default function Home({ auth, signOut }) {
   const navigate = useNavigate();
 
   // log out the current authenticated user
-  // if the logout is successful - delays the redirection to login page by 2 seconds
-  // if the logout fails -  the error message is console logged
 
   function logOut() {
     signOut(auth)
       .then(() => {
-        // Sign-out successful
+        // if the logout is successful - delays the redirection to login page by 2 seconds
+
         console.log(`User successfully logged out of the app.`);
         setTimeout(() => {
           navigate(`/`);
         }, 2000); // 2 seconds
       })
       .catch((error) => {
-        // An error happened
+        // if the logout fails -  the error message is console logged
+
         console.error(error.message);
         console.log(`User failed to logout of the app.`);
       });
