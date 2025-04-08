@@ -29,6 +29,12 @@ export default function App() {
 
   const [isSuccessful, setIsSuccessful] = useState(null);
 
+  const [showPassword, setShowPassword] = useState(false);
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
+
   return (
     <>
       <BrowserRouter>
@@ -52,6 +58,8 @@ export default function App() {
                   setLoginMessage={setLoginMessage}
                   setEmailMessage={setEmailMessage}
                   setPasswordMessage={setPasswordMessage}
+                  showPassword={showPassword}
+                  togglePasswordVisibility={togglePasswordVisibility}
                 />
               }
             />
@@ -75,6 +83,8 @@ export default function App() {
                   setPasswordMessage={setPasswordMessage}
                   isSuccessful={isSuccessful}
                   setIsSuccessful={setIsSuccessful}
+                  showPassword={showPassword}
+                  togglePasswordVisibility={togglePasswordVisibility}
                 />
               }
             />

@@ -34,12 +34,12 @@
 
 .create-account-email-input-message,
 .create-account-password-input-message {
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   font-style: italic;
 }
 
 .create-account-form input {
-  margin-top: 0.5rem;
+  margin: 0.5rem 0;
 }
 
 .create-account-btn {

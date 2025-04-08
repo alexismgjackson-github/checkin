@@ -133,6 +133,15 @@ hr {
   opacity: 0.5rem;
 }
 
+.toggle-password-visibility-btn {
+  background-color: inherit;
+  color: var(--color-medium);
+  font-family: var(--font-primary);
+  font-size: 1.4rem;
+  font-style: italic;
+  width: fit-content;
+}
+
 .animate__animated.animate__fadeIn {
   --animate-duration: 1.5s;
 }

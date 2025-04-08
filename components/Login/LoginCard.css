@@ -23,6 +23,7 @@
 
 .login-email-header,
 .login-password-header {
+  align-items: center;
   display: flex;
   justify-content: space-between;
 }

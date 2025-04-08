@@ -16,6 +16,8 @@ export default function CreateAccountCard({
   setPasswordMessage,
   isSuccessful,
   setIsSuccessful,
+  togglePasswordVisibility,
+  showPassword,
 }) {
   // creates a user account with firebase auth
 
@@ -28,9 +30,9 @@ export default function CreateAccountCard({
 
         console.log(`User successfully created an account`);
         setIsSuccessful(true);
-        setCreateAcctMessage("User credentials were successful!");
-        setEmailMessage("Email was successful!");
-        setPasswordMessage("Password was successful!");
+        setCreateAcctMessage("User credentials were successfully created!");
+        setEmailMessage("Email creation was successful!");
+        setPasswordMessage("Password creation was successful!");
         setTimeout(() => {
           navigate(`/home`);
         }, 2000); // 2 seconds
@@ -69,7 +71,7 @@ export default function CreateAccountCard({
         // validating password length
 
         if (password.length < 6) {
-          setPasswordMessage("Must contain at least 6 characters");
+          setPasswordMessage("Password must contain at least 6 characters");
         }
       });
   };
@@ -107,17 +109,6 @@ export default function CreateAccountCard({
               >
                 Email
               </label>
-              <span
-                className={`create-account-email-input-message ${
-                  isSuccessful === null
-                    ? ""
-                    : isSuccessful
-                    ? "success"
-                    : "error"
-                }`}
-              >
-                {emailMessage}
-              </span>
             </div>
             <input
               type="email"
@@ -129,6 +120,13 @@ export default function CreateAccountCard({
               onChange={(e) => setEmail(e.target.value)}
               required
             />
+            <span
+              className={`create-account-email-input-message ${
+                isSuccessful === null ? "" : isSuccessful ? "success" : "error"
+              }`}
+            >
+              {emailMessage}
+            </span>
           </div>
           <div className="create-account-password">
             <div className="create-account-password-header">
@@ -138,26 +136,29 @@ export default function CreateAccountCard({
               >
                 Password
               </label>
-              <span
-                className={`create-account-password-input-message ${
-                  isSuccessful === null
-                    ? ""
-                    : isSuccessful
-                    ? "success"
-                    : "error"
-                }`}
+              <button
+                type="button"
+                className="toggle-password-visibility-btn"
+                onClick={togglePasswordVisibility}
               >
-                {passwordMessage}
-              </span>
+                {showPassword ? "Hide Password" : "Show Password"}
+              </button>
             </div>
             <input
-              type="password"
+              type={showPassword ? "text" : "password"}
               name="create-accountPassword"
               id="create-accountPassword"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
             />
+            <span
+              className={`create-account-password-input-message ${
+                isSuccessful === null ? "" : isSuccessful ? "success" : "error"
+              }`}
+            >
+              {passwordMessage}
+            </span>
           </div>
           <button className="create-account-btn">Sign Up</button>
           <p className="link-to-login">
