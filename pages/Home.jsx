@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useNavigate } from "react-router";
 import EmotionalStateButtons from "../components/Home/EmotionalStateButtons";
 import CheckInForm from "../components/Home/CheckInForm";
@@ -6,8 +7,8 @@ import FilterButtons from "../components/Home/FilterButtons";
 import CheckInModal from "../components/Home/CheckInModal";
 import "./Home.css";
 
-export default function Home({ auth, signOut }) {
-  const user = auth.currentUser;
+export default function Home({ auth, signOut, onAuthStateChanged }) {
+  // const user = auth.currentUser;
   const navigate = useNavigate();
 
   // log out the current authenticated user
@@ -17,7 +18,7 @@ export default function Home({ auth, signOut }) {
       .then(() => {
         // if the logout is successful - delays the redirection to login page by 2 seconds
 
-        console.log(`User successfully logged out of the app`);
+        console.log(`User is successfully logging out`);
         setTimeout(() => {
           navigate(`/`);
         }, 2000); // 2 seconds
@@ -29,6 +30,17 @@ export default function Home({ auth, signOut }) {
         console.log(`User failed to logout of the app`);
       });
   }
+
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        const uid = user.uid;
+        console.log(`User (${uid}) has successfully logged in`);
+      } else {
+        console.log(`User has successfully logged out`);
+      }
+    });
+  }, []);
 
   return (
     <>

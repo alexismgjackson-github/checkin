@@ -25,9 +25,7 @@ export default function CreateAccountCard({
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         // if the account creation is successful - delays the redirection to home page by 2 seconds
-        // & clear input fields and messages 4 seconds later
 
-        const user = userCredential.user;
         console.log(`User successfully created an account`);
         setIsSuccessful(true);
         setCreateAcctMessage("User credentials were successful!");
@@ -36,6 +34,9 @@ export default function CreateAccountCard({
         setTimeout(() => {
           navigate(`/home`);
         }, 2000); // 2 seconds
+
+        // clear input fields and messages 4 seconds later
+
         setTimeout(() => {
           setEmail("");
           setPassword("");
@@ -45,17 +46,31 @@ export default function CreateAccountCard({
         }, 4000); // 4 seconds
       })
       .catch((error) => {
-        // if the account creation fails - error code/essage are console logged
-        // & an error message is displayed for input fields
+        // if the account creation fails - error code/message are console logged
 
         const errorCode = error.code;
         const errorMessage = error.message;
-        console.log(`${errorCode} : ${errorMessage}`);
+        console.log(`CREATE ACCOUNT ERROR: ${errorCode} - ${errorMessage}`);
         console.log(`User's account creation failed`);
+
+        // error messages are displayed for create account card
+
         setIsSuccessful(false);
-        setCreateAcctMessage("User credentials failed!");
-        setEmailMessage("Please enter a valid email");
-        setPasswordMessage("Must contain 6 characters");
+        setCreateAcctMessage("User credentials have failed!");
+
+        // validating email format
+
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        // method used to test if a string matches a regular expression
+        if (!emailRegex.test(email)) {
+          setEmailMessage("Please enter a valid email");
+        }
+
+        // validating password length
+
+        if (password.length < 6) {
+          setPasswordMessage("Must contain at least 6 characters");
+        }
       });
   };
 
@@ -80,7 +95,7 @@ export default function CreateAccountCard({
           <span
             className={`create-account-card-message ${
               isSuccessful === null ? "" : isSuccessful ? "success" : "error"
-            }`}
+            }`} // apply specific styles for each state - green for "isSuccessful" and red for "!isSuccessful"
           >
             {createAcctMessage}
           </span>
@@ -108,7 +123,6 @@ export default function CreateAccountCard({
               type="email"
               name="create-accountEmail"
               id="create-accountEmail"
-              pattern="[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$"
               spellCheck="false"
               autoComplete="off"
               value={email}

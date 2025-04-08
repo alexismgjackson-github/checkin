@@ -3,7 +3,10 @@ import { BrowserRouter, Routes, Route } from "react-router";
 import {
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
+  onAuthStateChanged,
   signOut,
+  GoogleAuthProvider,
+  signInWithPopup,
 } from "firebase/auth";
 import { auth } from "../config/firebase.js";
 import Layout from "../components/Layout/Layout.jsx";
@@ -36,6 +39,8 @@ export default function App() {
               element={
                 <Login
                   signInWithEmailAndPassword={signInWithEmailAndPassword}
+                  signInWithPopup={signInWithPopup}
+                  GoogleAuthProvider={GoogleAuthProvider}
                   auth={auth}
                   email={email}
                   password={password}
@@ -75,7 +80,13 @@ export default function App() {
             />
             <Route
               path="/home"
-              element={<Home auth={auth} signOut={signOut} />}
+              element={
+                <Home
+                  auth={auth}
+                  onAuthStateChanged={onAuthStateChanged}
+                  signOut={signOut}
+                />
+              }
             />
           </Route>
         </Routes>

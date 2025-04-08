@@ -3,6 +3,8 @@ import "./LoginCard.css";
 
 export default function LoginCard({
   signInWithEmailAndPassword,
+  signInWithPopup,
+  GoogleAuthProvider,
   auth,
   email,
   password,
@@ -11,6 +13,30 @@ export default function LoginCard({
   setPassword,
   setLoginMessage,
 }) {
+  // handles google login for a user using firebase authentication
+  // shows a google login popup, navigates to home page after a successful login (with a 1-second delay)
+  // logs any errors if something goes wrong during the login process
+
+  const provider = new GoogleAuthProvider();
+
+  const logInWithGoogle = (event) => {
+    event.preventDefault();
+
+    signInWithPopup(auth, provider)
+      .then((result) => {
+        setTimeout(() => {
+          navigate(`/home`);
+        }, 1000); // 1 second
+        console.log(`User is logging in with Google`);
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        const email = error.customData.email;
+        console.log(`GOOGLE ERROR: ${email} - ${errorCode} - ${errorMessage}`);
+      });
+  };
+
   // signs in the user with firebase authentication using valid credentials
 
   const logInWithUserCredentials = (event) => {
@@ -19,10 +45,9 @@ export default function LoginCard({
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         // if the login is successful - delays the redirection to home page by 2 seconds
-        // & clear input fields / messages
+        // & clear input fields and messages
 
-        const user = userCredential.user;
-        console.log(`User successfully logged in`);
+        console.log(`User is successfully logging in`);
         setTimeout(() => {
           navigate(`/home`);
         }, 2000); // 2 seconds
@@ -32,10 +57,9 @@ export default function LoginCard({
       })
       .catch((error) => {
         // if the login fails - error code/message are console logged and login message is displayed
-
         const errorCode = error.code;
         const errorMessage = error.message;
-        console.log(`${errorCode} : ${errorMessage}`);
+        console.log(`LOG-IN ERROR: ${errorCode} - ${errorMessage}`);
         console.log(`User's log-in credentials failed`);
         setLoginMessage("Please enter valid user credentials!");
       });
@@ -100,7 +124,7 @@ export default function LoginCard({
           </p>
         </form>
         <hr />
-        <button className="continue-with-google-btn">
+        <button className="continue-with-google-btn" onClick={logInWithGoogle}>
           <img
             src="./assets/icons/google.svg"
             alt="Google icon"

@@ -3,6 +3,8 @@ import "./Login.css";
 
 export default function Login({
   signInWithEmailAndPassword,
+  signInWithPopup,
+  GoogleAuthProvider,
   auth,
   email,
   password,
@@ -19,6 +21,8 @@ export default function Login({
     <>
       <LoginCard
         signInWithEmailAndPassword={signInWithEmailAndPassword}
+        signInWithPopup={signInWithPopup}
+        GoogleAuthProvider={GoogleAuthProvider}
         auth={auth}
         email={email}
         password={password}
