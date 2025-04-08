@@ -1,0 +1,66 @@
+.check-ins-list {
+  display: grid;
+  gap: 2rem;
+  margin: auto;
+}
+
+.check-in-list-item {
+  align-items: center;
+  display: flex;
+  background-color: var(--color-extralight);
+  border: 1px solid #aea598;
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+}
+
+.check-in-list-item-left {
+  margin-right: 1.5rem;
+}
+
+.check-in-list-item-right {
+  display: grid;
+  gap: 1rem;
+}
+
+.check-in-list-item-date {
+  color: var(--color-medium);
+  font-size: 1.4rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.view-more-btn {
+  font-size: 1.8rem;
+  margin: auto;
+  margin-top: 2rem;
+  max-width: 50rem;
+  min-width: 25rem;
+  padding: 1rem;
+}
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+  .check-in-list-item {
+    padding: 2rem;
+  }
+
+  .check-in-list-item-left {
+    margin-right: 2rem;
+  }
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+}

@@ -4,11 +4,10 @@ import EmotionalStateButtons from "../components/Home/EmotionalStateButtons";
 import CheckInForm from "../components/Home/CheckInForm";
 import CheckInsList from "../components/Home/CheckInsList";
 import FilterButtons from "../components/Home/FilterButtons";
-import CheckInModal from "../components/Home/CheckInModal";
+// import CheckInModal from "../components/Home/CheckInModal";
 import "./Home.css";
 
 export default function Home({ auth, signOut, onAuthStateChanged }) {
-  // const user = auth.currentUser;
   const navigate = useNavigate();
 
   // log out the current authenticated user
@@ -45,15 +44,24 @@ export default function Home({ auth, signOut, onAuthStateChanged }) {
   return (
     <>
       <div className="home-page-container animate__animated animate__fadeIn">
-        <h1>Home page</h1>
-        <span className="log-out" onClick={logOut}>
-          log out
-        </span>
+        <div className="log-out-btn-container">
+          <button className="log-out-btn" onClick={logOut}>
+            <img
+              className="log-out"
+              src="./assets/icons/logout.svg"
+              alt="Log out"
+              aria-label="Log out"
+            />
+          </button>
+        </div>
+        <p className="current-date">Tuesday, April 8, 2025</p>
+        <h1>How are you feeling?</h1>
         <EmotionalStateButtons />
+        <p className="current-feeling">I'm feeling content.</p>
         <CheckInForm />
-        <CheckInsList />
         <FilterButtons />
-        <CheckInModal />
+        <CheckInsList />
+        {/*<CheckInModal /> */}
       </div>
     </>
   );

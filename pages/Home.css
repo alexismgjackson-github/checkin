@@ -1,9 +1,46 @@
-.log-out {
-  text-decoration: underline;
+.home-page-container {
+  display: grid;
+  gap: 2rem;
+  padding-top: 0rem;
 }
 
-.log-out:hover {
+.log-out-btn-container {
+  display: flex;
+  justify-content: end;
+}
+
+.log-out-btn {
+  background-color: inherit;
+  padding: 0;
+  width: fit-content;
+}
+
+.log-out-btn:hover {
   cursor: pointer;
+}
+
+.log-out {
+  width: 2.4rem;
+}
+
+.current-date {
+  color: var(--color-medium);
+  font-size: 1.4rem;
+  font-weight: 600;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.home-page-container h1 {
+  text-align: center;
+}
+
+.current-feeling {
+  font-family: var(--font-secondary);
+  font-size: 2rem;
+  font-style: italic;
+  font-weight: 500;
+  margin-bottom: 1rem;
 }
 
 /* Extra small devices (phones, 600px and down) */
@@ -20,6 +57,12 @@
 
 /* Large devices (laptops/desktops, 992px and up) */
 @media only screen and (min-width: 992px) {
+  .current-date {
+    font-size: 1.6rem;
+  }
+  .current-feeling {
+    font-size: 2.4rem;
+  }
 }
 
 /* Extra large devices (large laptops and desktops, 1200px and up) */
