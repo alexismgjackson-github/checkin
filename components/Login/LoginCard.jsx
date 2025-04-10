@@ -12,8 +12,8 @@ export default function LoginCard({
   setEmail,
   setPassword,
   setLoginMessage,
-  togglePasswordVisibility,
-  showPassword,
+  toggleLoginPasswordVisibility,
+  showLoginPassword,
 }) {
   // handles google login for a user using firebase authentication
   // shows a google login popup, navigates to home page after a successful login (with a 1-second delay)
@@ -110,13 +110,13 @@ export default function LoginCard({
               <button
                 type="button"
                 className="toggle-password-visibility-btn"
-                onClick={togglePasswordVisibility}
+                onClick={toggleLoginPasswordVisibility}
               >
-                {showPassword ? "Hide Password" : "Show Password"}
+                {showLoginPassword ? "Hide Password" : "Show Password"}
               </button>
             </div>
             <input
-              type={showPassword ? "text" : "password"}
+              type={showLoginPassword ? "text" : "password"}
               name="loginPassword"
               id="loginPassword"
               value={password}

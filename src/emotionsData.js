@@ -1,9 +1,58 @@
-// export default [
-// {
-// id: "Calm",
-// emotion: "Calm",
-// url: "./assets/icons/calm.svg",
-// alt: "Calm emoji",
-// label: "I'm feeling calm"
-// },
-// ];
+export default [
+  {
+    id: "Satisfied",
+    emotion: "satisfied",
+    url: "./assets/icons/satisfied.svg",
+    alt: "Satisfied emoji",
+    label: "I'm feeling satisfied.",
+  },
+  {
+    id: "Excited",
+    emotion: "excited",
+    url: "./assets/icons/excited.svg",
+    alt: "Excited emoji",
+    label: "I'm feeling excited.",
+  },
+  {
+    id: "Calm",
+    emotion: "calm",
+    url: "./assets/icons/calm.svg",
+    alt: "Calm emoji",
+    label: "I'm feeling calm.",
+  },
+  {
+    id: "Content",
+    emotion: "content",
+    url: "./assets/icons/content.svg",
+    alt: "Content emoji",
+    label: "I'm feeling content.",
+  },
+  {
+    id: "Stressed",
+    emotion: "stressed",
+    url: "./assets/icons/stressed.svg",
+    alt: "Stressed emoji",
+    label: "I'm feeling stressed.",
+  },
+  {
+    id: "Worried",
+    emotion: "worried",
+    url: "./assets/icons/worried.svg",
+    alt: "Worried emoji",
+    label: "I'm feeling worried.",
+  },
+  {
+    id: "Frustrated",
+    emotion: "frustrated",
+    url: "./assets/icons/frustrated.svg",
+    alt: "Frustrated emoji",
+    label: "I'm feeling frustrated.",
+  },
+  {
+    id: "Sad",
+    emotion: "sad",
+    url: "./assets/icons/sad.svg",
+    alt: "Sad emoji",
+    label: "I'm feeling sad.",
+  },
+];

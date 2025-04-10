@@ -85,13 +85,19 @@ input {
   color: var(--color-bold);
 }
 
+fieldset {
+  border: none;
+  display: grid;
+  gap: 0.5rem;
+}
+
 textarea {
   border-radius: 0.675rem;
   font-family: var(--font-primary);
   font-size: 1.6rem;
   max-height: 56rem;
   min-height: 28rem;
-  padding: 1rem;
+  padding: 2rem;
   resize: none;
   width: 100%;
 }
@@ -184,9 +190,6 @@ hr {
 
 /* Large devices (laptops/desktops, 992px and up) */
 @media only screen and (min-width: 992px) {
-  textarea {
-    padding: 2rem;
-  }
 }
 
 /* Extra large devices (large laptops and desktops, 1200px and up) */

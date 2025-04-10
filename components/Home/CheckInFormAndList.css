@@ -3,10 +3,41 @@
   gap: 2rem;
 }
 
+.emotion-fieldset-message {
+  font-size: 1.4rem;
+  font-style: italic;
+  height: 1.4rem;
+}
+
 .checkin-form-btn {
   background-color: var(--color-bold);
   font-size: 1.8rem;
   margin: auto;
+  max-width: 50rem;
+  min-width: 25rem;
+  padding: 1rem;
+}
+
+.length {
+  color: var(--color-medium);
+  font-style: italic;
+  margin-top: 2rem;
+  text-align: center;
+}
+
+.check-in-list-item {
+  align-items: center;
+  display: flex;
+  background-color: var(--color-extralight);
+  border: 1px solid #aea598;
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+}
+
+.view-more-btn {
+  font-size: 1.8rem;
+  margin: auto;
+  margin-top: 2rem;
   max-width: 50rem;
   min-width: 25rem;
   padding: 1rem;

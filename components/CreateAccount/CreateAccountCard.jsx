@@ -16,8 +16,8 @@ export default function CreateAccountCard({
   setPasswordMessage,
   isSuccessful,
   setIsSuccessful,
-  togglePasswordVisibility,
-  showPassword,
+  toggleCreateAcctPasswordVisibility,
+  showCreateAcctPassword,
 }) {
   // creates a user account with firebase auth
 
@@ -139,13 +139,13 @@ export default function CreateAccountCard({
               <button
                 type="button"
                 className="toggle-password-visibility-btn"
-                onClick={togglePasswordVisibility}
+                onClick={toggleCreateAcctPasswordVisibility}
               >
-                {showPassword ? "Hide Password" : "Show Password"}
+                {showCreateAcctPassword ? "Hide Password" : "Show Password"}
               </button>
             </div>
             <input
-              type={showPassword ? "text" : "password"}
+              type={showCreateAcctPassword ? "text" : "password"}
               name="create-accountPassword"
               id="create-accountPassword"
               value={password}

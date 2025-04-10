@@ -1,6 +1,6 @@
 .home-page-container {
   display: grid;
-  gap: 2rem;
+  gap: 1rem;
   padding-top: 0rem;
 }
 
@@ -35,12 +35,18 @@
   text-align: center;
 }
 
+.emotional-state-btns-container {
+  display: flex;
+  justify-content: space-between;
+  margin: 0.5rem 0;
+}
+
 .current-feeling {
   font-family: var(--font-secondary);
   font-size: 2rem;
   font-style: italic;
+  height: 2rem;
   font-weight: 500;
-  margin-bottom: 1rem;
 }
 
 /* Extra small devices (phones, 600px and down) */

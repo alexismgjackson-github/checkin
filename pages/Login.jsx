@@ -16,8 +16,8 @@ export default function Login({
   setLoginMessage,
   setEmailMessage,
   setPasswordMessage,
-  togglePasswordVisibility,
-  showPassword,
+  toggleLoginPasswordVisibility,
+  showLoginPassword,
 }) {
   return (
     <>
@@ -36,8 +36,8 @@ export default function Login({
         setLoginMessage={setLoginMessage}
         setEmailMessage={setEmailMessage}
         setPasswordMessage={setPasswordMessage}
-        togglePasswordVisibility={togglePasswordVisibility}
-        showPassword={showPassword}
+        toggleLoginPasswordVisibility={toggleLoginPasswordVisibility}
+        showLoginPassword={showLoginPassword}
       />
     </>
   );

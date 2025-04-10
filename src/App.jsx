@@ -29,10 +29,16 @@ export default function App() {
 
   const [isSuccessful, setIsSuccessful] = useState(null);
 
-  const [showPassword, setShowPassword] = useState(false);
+  const [showLoginPassword, setShowLoginPassword] = useState(false);
 
-  const togglePasswordVisibility = () => {
-    setShowPassword(!showPassword);
+  const [showCreateAcctPassword, setShowCreateAcctPassword] = useState(false);
+
+  const toggleLoginPasswordVisibility = () => {
+    setShowLoginPassword(!showLoginPassword);
+  };
+
+  const toggleCreateAcctPasswordVisibility = () => {
+    setShowCreateAcctPassword(!showCreateAcctPassword);
   };
 
   return (
@@ -58,8 +64,8 @@ export default function App() {
                   setLoginMessage={setLoginMessage}
                   setEmailMessage={setEmailMessage}
                   setPasswordMessage={setPasswordMessage}
-                  showPassword={showPassword}
-                  togglePasswordVisibility={togglePasswordVisibility}
+                  showLoginPassword={showLoginPassword}
+                  toggleLoginPasswordVisibility={toggleLoginPasswordVisibility}
                 />
               }
             />
@@ -83,8 +89,10 @@ export default function App() {
                   setPasswordMessage={setPasswordMessage}
                   isSuccessful={isSuccessful}
                   setIsSuccessful={setIsSuccessful}
-                  showPassword={showPassword}
-                  togglePasswordVisibility={togglePasswordVisibility}
+                  showCreateAcctPassword={showCreateAcctPassword}
+                  toggleCreateAcctPasswordVisibility={
+                    toggleCreateAcctPasswordVisibility
+                  }
                 />
               }
             />

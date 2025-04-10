@@ -1,24 +1,18 @@
-.emotional-state-btns-container {
-  display: flex;
-  justify-content: space-between;
-  margin: 0.5rem 0;
-}
-
 .emotional-state-btn {
   align-items: center;
   background-color: inherit;
   display: flex;
-  opacity: 0.375;
+  opacity: 0.25;
   padding: 0;
-  width: 4rem;
+  width: 4.125rem;
 }
 
-.emotional-state-btn:hover {
+.emotional-state-btn.selected {
   opacity: 1;
 }
 
 .emoji {
-  width: 4rem;
+  width: 4.125rem;
 }
 
 /* Extra small devices (phones, 600px and down) */

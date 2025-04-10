@@ -4,15 +4,6 @@
   margin: auto;
 }
 
-.check-in-list-item {
-  align-items: center;
-  display: flex;
-  background-color: var(--color-extralight);
-  border: 1px solid #aea598;
-  border-radius: 0.75rem;
-  padding: 1.5rem;
-}
-
 .check-in-list-item-left {
   margin-right: 1.5rem;
 }
@@ -22,20 +13,30 @@
   gap: 1rem;
 }
 
+.check-in-list-item-right-header {
+  align-items: center;
+  display: flex;
+}
+
 .check-in-list-item-date {
   color: var(--color-medium);
   font-size: 1.4rem;
   font-weight: 600;
+  margin-right: 3rem;
   text-transform: uppercase;
 }
 
-.view-more-btn {
-  font-size: 1.8rem;
-  margin: auto;
-  margin-top: 2rem;
-  max-width: 50rem;
-  min-width: 25rem;
-  padding: 1rem;
+.view-check-in-btn {
+  align-items: center;
+  display: flex;
+  background-color: inherit;
+  justify-content: center;
+  padding: 0;
+  width: 2.8rem;
+}
+
+.view-check-in {
+  width: 2.8rem;
 }
 
 /* Extra small devices (phones, 600px and down) */

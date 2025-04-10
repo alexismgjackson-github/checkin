@@ -16,8 +16,8 @@ export default function CreateAccount({
   setPasswordMessage,
   isSuccessful,
   setIsSuccessful,
-  togglePasswordVisibility,
-  showPassword,
+  toggleCreateAcctPasswordVisibility,
+  showCreateAcctPassword,
 }) {
   return (
     <>
@@ -36,8 +36,8 @@ export default function CreateAccount({
         setPasswordMessage={setPasswordMessage}
         isSuccessful={isSuccessful}
         setIsSuccessful={setIsSuccessful}
-        togglePasswordVisibility={togglePasswordVisibility}
-        showPassword={showPassword}
+        toggleCreateAcctPasswordVisibility={toggleCreateAcctPasswordVisibility}
+        showCreateAcctPassword={showCreateAcctPassword}
       />
     </>
   );
