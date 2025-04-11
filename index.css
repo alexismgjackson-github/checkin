@@ -83,6 +83,7 @@ input {
   background-color: var(--color-extralight);
   border: 1px solid var(--color-medium);
   color: var(--color-bold);
+  margin-bottom: 0.5rem;
 }
 
 fieldset {
@@ -95,8 +96,7 @@ textarea {
   border-radius: 0.675rem;
   font-family: var(--font-primary);
   font-size: 1.6rem;
-  max-height: 56rem;
-  min-height: 28rem;
+  height: 20rem;
   padding: 2rem;
   resize: none;
   width: 100%;

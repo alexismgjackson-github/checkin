@@ -5,7 +5,7 @@
 }
 
 .check-in-list-item-left {
-  margin-right: 1.5rem;
+  width: 4rem;
 }
 
 .check-in-list-item-right {
@@ -13,30 +13,15 @@
   gap: 1rem;
 }
 
-.check-in-list-item-right-header {
-  align-items: center;
-  display: flex;
-}
-
 .check-in-list-item-date {
   color: var(--color-medium);
   font-size: 1.4rem;
   font-weight: 600;
-  margin-right: 3rem;
   text-transform: uppercase;
 }
 
-.view-check-in-btn {
-  align-items: center;
-  display: flex;
-  background-color: inherit;
-  justify-content: center;
-  padding: 0;
-  width: 2.8rem;
-}
-
-.view-check-in {
-  width: 2.8rem;
+.check-in-list-item-snippet {
+  font-family: var(--font-secondary);
 }
 
 /* Extra small devices (phones, 600px and down) */

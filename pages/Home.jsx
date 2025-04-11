@@ -4,16 +4,9 @@ import CheckInFormAndList from "../components/Home/CheckInFormAndList";
 import "./Home.css";
 
 export default function Home({ auth, signOut, onAuthStateChanged }) {
-  const today = new Date(); // the current date
-
-  // formats today's date into 'Tuesday, April 1st, 2025
-  const formattedDate = today.toLocaleDateString("en-US", {
-    weekday: "long", // 'long' for full weekday name (e.g., 'Tuesday')
-    year: "numeric", // 'numeric' for full year (e.g., 2025)
-    month: "long", // 'long' for full month name (e.g., 'April')
-    day: "numeric", // 'numeric' for the day of the month
-  });
-
+  // state that initializes with stored check-ins from localStorage (if any)
+  // otherwise, starts with an empty array
+  // "checkIns" holds all submitted entries
 
   const [checkIns, setCheckIns] = useState(
     localStorage.getItem("checkins")
@@ -21,11 +14,27 @@ export default function Home({ auth, signOut, onAuthStateChanged }) {
       : []
   );
 
+  // state that holds the value of the current check-in the user is typing
+
   const [newCheckIn, setNewCheckIn] = useState("");
 
-  const navigate = useNavigate();
+  // the current date
+  // displayed to the user and used in saved check-ins
+
+  const today = new Date();
+
+  // formats today's date into 'Tuesday, April 1st, 2025'
+
+  const formattedDate = today.toLocaleDateString("en-US", {
+    weekday: "long", // for full weekday name (e.g., 'Tuesday')
+    year: "numeric", // for full year (e.g., 2025)
+    month: "long", // for full month name (e.g., 'April')
+    day: "numeric", // for the day of the month
+  });
 
   // log out the current authenticated user
+
+  const navigate = useNavigate();
 
   function logOut() {
     signOut(auth)
@@ -45,16 +54,22 @@ export default function Home({ auth, signOut, onAuthStateChanged }) {
       });
   }
 
+  // only runs once (because of the empty [] dependency array)
+  // uses firebase onAuthStateChanged() to listen for login/logout changes
+
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
         const uid = user.uid;
-        console.log(`User ("${uid}) has successfully logged in`);
+        console.log(`User has successfully logged in`);
       } else {
         console.log("User has successfully logged out");
       }
     });
   }, []);
+
+  // anytime checkIns changes, it saves the new array to localStorage
+  // keeps data persistent across page reloads
 
   useEffect(() => {
     localStorage.setItem("checkins", JSON.stringify(checkIns));

@@ -11,13 +11,13 @@ export default function CreateAccountCard({
   createAcctMessage,
   setEmail,
   setPassword,
+  showCreateAcctPassword,
   setCreateAcctMessage,
   setEmailMessage,
   setPasswordMessage,
   isSuccessful,
   setIsSuccessful,
   toggleCreateAcctPasswordVisibility,
-  showCreateAcctPassword,
 }) {
   // creates a user account with firebase auth
 

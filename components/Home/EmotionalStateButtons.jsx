@@ -9,10 +9,11 @@ export default function EmotionalStateButtons({
   onEmotionClick,
   isSelected,
 }) {
-  // call the parent function to update the current emotion
+  // when the button is clicked, it calls the parent function onEmotionClick
+  // passes the label of this emotion
 
   const toggleClick = () => {
-    onEmotionClick(label); // pass the emotion label to the parent
+    onEmotionClick(label); // passing the emotion label to the parent (CheckInFormAndList)
   };
 
   return (

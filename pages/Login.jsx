@@ -1,3 +1,4 @@
+import { useState } from "react";
 import LoginCard from "../components/Login/LoginCard";
 import "./Login.css";
 
@@ -8,17 +9,23 @@ export default function Login({
   auth,
   email,
   password,
-  loginMessage,
-  emailMessage,
-  passwordMessage,
   setEmail,
   setPassword,
-  setLoginMessage,
-  setEmailMessage,
-  setPasswordMessage,
-  toggleLoginPasswordVisibility,
-  showLoginPassword,
 }) {
+  // state for displaying messages to the user, such as login success, errors, etc
+
+  const [loginMessage, setLoginMessage] = useState("");
+
+  // state determines whether the password is visible in the form
+
+  const [showLoginPassword, setShowLoginPassword] = useState(false);
+
+  // toggle function to flip showLoginPassword between true and false
+
+  const toggleLoginPasswordVisibility = () => {
+    setShowLoginPassword(!showLoginPassword);
+  };
+
   return (
     <>
       <LoginCard
@@ -28,14 +35,10 @@ export default function Login({
         auth={auth}
         email={email}
         password={password}
-        emailMessage={emailMessage}
-        passwordMessage={passwordMessage}
         loginMessage={loginMessage}
         setEmail={setEmail}
         setPassword={setPassword}
         setLoginMessage={setLoginMessage}
-        setEmailMessage={setEmailMessage}
-        setPasswordMessage={setPasswordMessage}
         toggleLoginPasswordVisibility={toggleLoginPasswordVisibility}
         showLoginPassword={showLoginPassword}
       />

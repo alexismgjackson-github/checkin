@@ -15,31 +15,17 @@ import CreateAccount from "../pages/CreateAccount.jsx";
 import Home from "../pages/Home.jsx";
 
 export default function App() {
+  // state for user's email input
+
   const [email, setEmail] = useState("");
+
+  // state for user's password input
 
   const [password, setPassword] = useState("");
 
-  const [loginMessage, setLoginMessage] = useState("");
-
-  const [createAcctMessage, setCreateAcctMessage] = useState("");
-
-  const [emailMessage, setEmailMessage] = useState("");
-
-  const [passwordMessage, setPasswordMessage] = useState("");
+  // state for if account creation was successful or not
 
   const [isSuccessful, setIsSuccessful] = useState(null);
-
-  const [showLoginPassword, setShowLoginPassword] = useState(false);
-
-  const [showCreateAcctPassword, setShowCreateAcctPassword] = useState(false);
-
-  const toggleLoginPasswordVisibility = () => {
-    setShowLoginPassword(!showLoginPassword);
-  };
-
-  const toggleCreateAcctPasswordVisibility = () => {
-    setShowCreateAcctPassword(!showCreateAcctPassword);
-  };
 
   return (
     <>
@@ -56,16 +42,8 @@ export default function App() {
                   auth={auth}
                   email={email}
                   password={password}
-                  emailMessage={emailMessage}
-                  passwordMessage={passwordMessage}
-                  loginMessage={loginMessage}
                   setEmail={setEmail}
                   setPassword={setPassword}
-                  setLoginMessage={setLoginMessage}
-                  setEmailMessage={setEmailMessage}
-                  setPasswordMessage={setPasswordMessage}
-                  showLoginPassword={showLoginPassword}
-                  toggleLoginPasswordVisibility={toggleLoginPasswordVisibility}
                 />
               }
             />
@@ -79,20 +57,10 @@ export default function App() {
                   auth={auth}
                   email={email}
                   password={password}
-                  emailMessage={emailMessage}
-                  passwordMessage={passwordMessage}
-                  createAcctMessage={createAcctMessage}
                   setEmail={setEmail}
                   setPassword={setPassword}
-                  setCreateAcctMessage={setCreateAcctMessage}
-                  setEmailMessage={setEmailMessage}
-                  setPasswordMessage={setPasswordMessage}
                   isSuccessful={isSuccessful}
                   setIsSuccessful={setIsSuccessful}
-                  showCreateAcctPassword={showCreateAcctPassword}
-                  toggleCreateAcctPasswordVisibility={
-                    toggleCreateAcctPasswordVisibility
-                  }
                 />
               }
             />

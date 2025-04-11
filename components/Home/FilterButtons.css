@@ -6,6 +6,7 @@
 
 .filter-btn {
   background-color: var(--color-medium);
+  margin: auto;
   padding: 0.75rem;
   width: 15rem;
 }

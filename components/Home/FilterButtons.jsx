@@ -1,11 +1,12 @@
 import "./FilterButtons.css";
 
-export default function FilterButtons() {
+export default function FilterButtons({ sortOrder, toggleCheckInsOrder }) {
   return (
     <>
       <div className="filter-btns-container">
-        <button className="filter-btn">Recent</button>
-        <button className="filter-btn">Oldest</button>
+        <button onClick={toggleCheckInsOrder} className="filter-btn">
+          {sortOrder === "recent" ? "Recent First" : "Oldest First"}
+        </button>
       </div>
     </>
   );

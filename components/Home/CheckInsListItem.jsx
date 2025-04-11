@@ -13,16 +13,8 @@ export default function CheckInsListItem({ checkIn }) {
         )}
       </div>
       <div className="check-in-list-item-right">
-        <div className="check-in-list-item-right-header">
-          <div className="check-in-list-item-date">{checkIn.date}</div>
-          <button className="view-check-in-btn" id={checkIn.id}>
-            <img
-              className="view-check-in"
-              src="./assets/icons/view.svg"
-              alt="View this check-in"
-              aria-label="View this check-in"
-            />
-          </button>
+        <div className="check-in-list-item-date">
+          {checkIn.date} @ {checkIn.timestamp}
         </div>
         <div className="check-in-list-item-snippet">{checkIn.text}</div>
       </div>
