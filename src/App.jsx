@@ -8,6 +8,8 @@ import {
   GoogleAuthProvider,
   signInWithPopup,
 } from "firebase/auth";
+import { db } from "../config/firebase.js";
+import { collection, addDoc } from "firebase/firestore";
 import { auth } from "../config/firebase.js";
 import Layout from "../components/Layout/Layout.jsx";
 import Login from "../pages/Login.jsx";
@@ -71,6 +73,9 @@ export default function App() {
                   auth={auth}
                   onAuthStateChanged={onAuthStateChanged}
                   signOut={signOut}
+                  db={db}
+                  collection={collection}
+                  addDoc={addDoc}
                 />
               }
             />

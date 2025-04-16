@@ -9,6 +9,10 @@
   height: 1.4rem;
 }
 
+.emotional-state-btns-container {
+  margin: 3rem 0;
+}
+
 .current-feeling {
   margin-bottom: 2rem;
 }

@@ -1,18 +1,26 @@
 import { useState, useEffect } from "react";
+import { onSnapshot, query, where } from "firebase/firestore";
 import { useNavigate } from "react-router";
 import CheckInFormAndList from "../components/Home/CheckInFormAndList";
 import "./Home.css";
 
-export default function Home({ auth, signOut, onAuthStateChanged }) {
+export default function Home({
+  auth,
+  signOut,
+  onAuthStateChanged,
+  db,
+  collection,
+  addDoc,
+}) {
+  // global variable
+
+  const collectionName = "checkins";
+
   // state that initializes with stored check-ins from localStorage (if any)
   // otherwise, starts with an empty array
   // "checkIns" holds all submitted entries
 
-  const [checkIns, setCheckIns] = useState(
-    localStorage.getItem("checkins")
-      ? JSON.parse(localStorage.getItem("checkins"))
-      : []
-  );
+  const [checkIns, setCheckIns] = useState([]);
 
   // state that holds the value of the current check-in the user is typing
 
@@ -62,18 +70,42 @@ export default function Home({ auth, signOut, onAuthStateChanged }) {
       if (user) {
         const uid = user.uid;
         console.log(`User has successfully logged in`);
+        fetchInRealtimeAndRenderCheckInsFromDB(user);
       } else {
         console.log("User has successfully logged out");
       }
     });
   }, []);
 
-  // anytime checkIns changes, it saves the new array to localStorage
-  // keeps data persistent across page reloads
+  // uses onSnapshot() to listen for real-time updates
+  // maps firestore documents into local checkIns state
+  // returns the unsubscribe function that firestore provides so you can stop listening when needed
+
+  const fetchInRealtimeAndRenderCheckInsFromDB = (user) => {
+    const checkInRef = collection(db, collectionName);
+    const q = query;
+
+    const unsubscribe = onSnapshot(checkInRef, (querySnapshot) => {
+      const newCheckIns = querySnapshot.docs.map((doc) => ({
+        ...doc.data(),
+        id: doc.id,
+      }));
+
+      setCheckIns(newCheckIns);
+    });
+    return unsubscribe;
+  };
+
+  // sets up the listener on mount
+  // cleans up with unsubscribe() when the component unmounts
 
   useEffect(() => {
-    localStorage.setItem("checkins", JSON.stringify(checkIns));
-  }, [checkIns]);
+    const unsubscribe = fetchInRealtimeAndRenderCheckInsFromDB();
+
+    return () => {
+      unsubscribe();
+    };
+  }, []);
 
   return (
     <>
@@ -96,6 +128,9 @@ export default function Home({ auth, signOut, onAuthStateChanged }) {
           newCheckIn={newCheckIn}
           setNewCheckIn={setNewCheckIn}
           formattedDate={formattedDate}
+          db={db}
+          collection={collection}
+          addDoc={addDoc}
         />
       </div>
     </>

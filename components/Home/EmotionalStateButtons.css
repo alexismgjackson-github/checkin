@@ -25,12 +25,15 @@
 
 /* Medium devices (landscape tablets, 768px and up) */
 @media only screen and (min-width: 768px) {
+  .emotional-state-btn {
+    width: 5rem;
+  }
 }
 
 /* Large devices (laptops/desktops, 992px and up) */
 @media only screen and (min-width: 992px) {
-  .emotional-state-btns-container {
-    margin: 3rem 0;
+  .emotional-state-btn {
+    width: 6rem;
   }
 }
 

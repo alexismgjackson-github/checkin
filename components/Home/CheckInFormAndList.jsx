@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { getAuth } from "firebase/auth";
 import EmotionalStateButtons from "./EmotionalStateButtons.jsx";
 import FilterButtons from "./FilterButtons.jsx";
 import data from "../../src/emotionsData.js";
@@ -12,7 +13,12 @@ export default function CheckInFormAndList({
   newCheckIn,
   setNewCheckIn,
   formattedDate,
+  db,
+  addDoc,
+  collection,
 }) {
+  const collectionName = "checkins";
+
   // state to show an error if the user tries to submit without selecting an emotion
 
   const [fieldsetMessage, setFieldsetMessage] = useState("");
@@ -27,7 +33,7 @@ export default function CheckInFormAndList({
 
   const [sortOrder, setSortOrder] = useState("recent");
 
-  // state
+  // state for time
 
   const [time, setTime] = useState(new Date());
 
@@ -51,55 +57,79 @@ export default function CheckInFormAndList({
 
   // updates the text area as the user types
 
-  const handleChange = (event) => {
+  const handleChange = async (event) => {
     setNewCheckIn(event.target.value);
   };
 
-  // this runs when the form is submitted
-
-  const addNewCheckIn = (event) => {
-    // prevents default form behavior
+  const addNewCheckIn = async (event) => {
+    // prevents the default form behavior
 
     event.preventDefault();
 
-    // if no emotion selected, shows an error message
+    // checks if the user selected an emotion
+    // if not, it shows an error message and stops further execution using return
 
     if (!selectedEmotion) {
       setFieldsetMessage("Please select an emotion");
       return;
-    } else {
-      setSelectedEmotion(null);
-      setCurrentFeeling("");
-      setFieldsetMessage("");
     }
 
-    // if no text typed, silently stop
+    // checks if the textarea is empty or just whitespace
+    // if so, it silently returns without doing anything
 
     if (!newCheckIn.trim()) {
       return;
     }
 
-    // finds the matching emoji URL for the selected emotion
-    // adds it to the checkIns array
+    // looks up the selected emotion in the data array to find the corresponding emoji URL
 
     const selectedEmotionData = data.find(
       (emotion) => emotion.label === selectedEmotion
     );
 
-    // creates a new check-in object
+    // addDoc() adds a new document to the "checkins" collection
+    // uuidv4() generates a unique ID for the check-in
+    // it includes the check-in text, time, date, and matching emoji
 
-    setCheckIns([
-      {
+    try {
+      const docRef = await addDoc(collection(db, collectionName), {
         id: uuidv4(),
+        uid: getAuth().currentUser?.uid || "anonymous",
         text: newCheckIn,
         timestamp: time.toLocaleTimeString(),
         date: formattedDate,
         emojiUrl: selectedEmotionData ? selectedEmotionData.url : "",
-      },
-      ...checkIns,
-    ]);
+      });
+
+      console.log("Document written with ID:", docRef.id); // logs the Firebase document ID so you can verify that it was saved successfully
+
+      // updates the local state (checkIns) by adding the new check-in at the top of the list
+      // keeps the UI in sync with what's in the database
+
+      setCheckIns([
+        {
+          id: docRef.id,
+          text: newCheckIn,
+          timestamp: time.toLocaleTimeString(),
+          date: formattedDate,
+          emojiUrl: selectedEmotionData ? selectedEmotionData.url : "",
+        },
+        ...checkIns,
+      ]);
+    } catch (e) {
+      console.error("Error adding document:", e); // if there's an error (like network failure), it logs the issue to the console
+    }
+
+    // resets the form inputs and error messages so the user can start a fresh check-in
+
     setNewCheckIn("");
+    setSelectedEmotion(null);
+    setCurrentFeeling("");
+    setFieldsetMessage("");
   };
+
+  // controls the order in which check-ins are displayed
+  // showing the newest first or oldest first
 
   const toggleCheckInsOrder = () => {
     setSortOrder((prevOrder) => (prevOrder === "recent" ? "oldest" : "recent"));
@@ -115,6 +145,7 @@ export default function CheckInFormAndList({
     }, 1000); // updates every second
 
     // Cleanup the interval when the component unmounts
+
     return () => clearInterval(intervalId);
   }, []);
 
@@ -145,9 +176,6 @@ export default function CheckInFormAndList({
         </form>
       </div>
       <div className="checkin-list-container">
-        <span className="checkins-length">
-          <p className="length">{checkIns.length} Check-In(s) exist</p>
-        </span>
         {checkIns.length > 0 ? (
           <FilterButtons
             toggleCheckInsOrder={toggleCheckInsOrder}
