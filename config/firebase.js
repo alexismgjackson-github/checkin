@@ -6,13 +6,13 @@ import { getAuth } from "firebase/auth";
 // Your web app's Firebase configuration
 
 const firebaseConfig = {
-  apiKey: import.meta.env.VITE_FIREBASE_CHECKIN_API_KEY,
-  authDomain: "watcherv2-11424.firebaseapp.com",
-  projectId: "watcherv2-11424",
-  storageBucket: "watcherv2-11424.firebasestorage.app",
-  messagingSenderId: "954146825785",
-  appId: "1:954146825785:web:a6b7e51568637740498fe8",
-  measurementId: "G-YZYH7ZBL92",
+  apiKey: "AIzaSyDKEpPv1EMmNwucl_QDdKwKaHLnsTMZFa8",
+  authDomain: "check-in-7312f.firebaseapp.com",
+  projectId: "check-in-7312f",
+  storageBucket: "check-in-7312f.firebasestorage.app",
+  messagingSenderId: "601541385438",
+  appId: "1:601541385438:web:8c8594f220ef1a8a96364f",
+  measurementId: "G-FKPML1QZQ6",
 };
 
 // Initialize Firebase
