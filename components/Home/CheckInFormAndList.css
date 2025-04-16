@@ -29,14 +29,22 @@
   text-align: center;
 }
 
+.check-ins-list {
+  display: grid;
+  gap: 2rem;
+}
+
 .check-in-list-item {
   align-items: center;
   display: flex;
+  flex-direction: column;
   background-color: var(--color-extralight);
   border: 1px solid #aea598;
   border-radius: 0.75rem;
   gap: 2rem;
+  margin: auto;
   padding: 1.5rem;
+  width: 90%;
 }
 
 .view-more-btn {

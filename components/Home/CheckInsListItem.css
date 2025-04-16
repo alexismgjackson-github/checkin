@@ -1,16 +1,11 @@
-.check-ins-list {
-  display: grid;
-  gap: 2rem;
-  margin: auto;
+.check-in-list-item-header {
+  align-items: center;
+  display: flex;
 }
 
-.check-in-list-item-left {
-  width: 4rem;
-}
-
-.check-in-list-item-right {
-  display: grid;
-  gap: 1rem;
+.check-in-list-item-feeling {
+  margin-right: 2rem;
+  width: 3rem;
 }
 
 .check-in-list-item-date {
