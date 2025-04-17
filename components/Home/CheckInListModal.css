@@ -1,41 +1,50 @@
-.checkin-form {
-  display: grid;
-  gap: 2rem;
-}
-
-.emotion-fieldset-message {
-  font-size: 1.4rem;
-  font-style: italic;
-  height: 1.4rem;
-}
-
-.emotional-state-btns-container {
-  margin: 3rem 0;
-}
-
-.current-feeling {
-  margin-bottom: 2rem;
-}
-
-.checkin-form-btn {
-  background-color: var(--color-bold);
-  font-size: 1.8rem;
+.check-list-modal-container {
+  background-color: var(--color-light);
+  left: 0;
   margin: auto;
-  max-width: 50rem;
-  min-width: 25rem;
-  padding: 1rem;
+  overflow-y: scroll;
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow-y: auto;
+  z-index: 1000;
+  padding: 2rem;
 }
 
-.length {
-  color: var(--color-medium);
-  font-style: italic;
-  margin-top: 3rem;
-  text-align: center;
+.checkin-list-container {
+  background-color: var(--color-light);
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow-y: auto;
+  z-index: 1000;
+  padding: 2rem;
+}
+
+.close-checkin-list-modal-btn {
+  background-color: inherit;
+  padding: 0;
+  width: fit-content;
+}
+
+.checkin-list-container h1 {
+  margin-bottom: 3rem;
+  margin-top: 1rem;
 }
 
 .check-ins-list {
   display: grid;
-  gap: 2rem;
+  gap: 3rem;
 }
 
 .check-in-list-item {
@@ -48,7 +57,7 @@
   gap: 2rem;
   margin: auto;
   padding: 1.5rem;
-  width: 90%;
+  width: 100%;
 }
 
 .view-more-btn {

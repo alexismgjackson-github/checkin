@@ -1,3 +1,32 @@
+.checkin-form {
+  display: grid;
+  gap: 2rem;
+}
+
+.emotion-fieldset-message {
+  font-size: 1.4rem;
+  font-style: italic;
+  height: 1.4rem;
+}
+
+.emotional-state-btns-container {
+  margin: 3rem 0;
+}
+
+.current-feeling {
+  margin-bottom: 2rem;
+}
+
+.checkin-form-btn {
+  background-color: var(--color-bold);
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  font-size: 1.8rem;
+  margin: auto;
+  max-width: 50rem;
+  min-width: 25rem;
+  padding: 1rem;
+}
+
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {
 }

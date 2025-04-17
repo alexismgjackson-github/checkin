@@ -2,13 +2,17 @@
   display: grid;
   gap: 1rem;
   padding-top: 0rem;
+  position: relative;
+  z-index: 0;
 }
 
-.log-out-btn-container {
+.checkin-list-and-log-out-btn-container {
+  align-items: center;
   display: flex;
-  justify-content: end;
+  justify-content: space-between;
 }
 
+.view-checkin-list-btn,
 .log-out-btn {
   background-color: inherit;
   padding: 0;
@@ -19,13 +23,17 @@
   cursor: pointer;
 }
 
-.log-out {
+.checkin-list-icon {
+  width: 3rem;
+}
+
+.log-out-icon {
   width: 2.4rem;
 }
 
 .current-date {
   color: var(--color-medium);
-  font-size: 1.4rem;
+  font-size: 1.6rem;
   font-weight: 600;
   margin-bottom: 3rem;
   text-align: center;
