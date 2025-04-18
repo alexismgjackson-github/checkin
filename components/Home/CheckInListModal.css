@@ -43,6 +43,11 @@
   text-align: center;
 }
 
+.no-checkins-message {
+  font-style: italic;
+  opacity: 0.5;
+}
+
 .check-ins-list {
   display: grid;
   gap: 3rem;

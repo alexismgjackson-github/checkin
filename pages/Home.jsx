@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { onSnapshot, query, where } from "firebase/firestore";
+import { onSnapshot, query, where, orderBy } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
 import { useNavigate } from "react-router";
 import CheckInForm from "../components/Home/CheckInForm";
@@ -104,7 +104,7 @@ export default function Home({
 
   const toggleModalVisibility = () => {
     isOpen ? setIsOpen(false) : setIsOpen(true);
-    console.log("modal button clicked");
+    // console.log("Modal's close button clicked");
   };
 
   const logOut = () => {
@@ -136,7 +136,11 @@ export default function Home({
     if (!user) return;
 
     const checkInRef = collection(db, collectionName);
-    const q = query(checkInRef, where("uid", "==", user.uid));
+    const q = query(
+      checkInRef,
+      where("uid", "==", user.uid),
+      orderBy("date", "desc")
+    );
 
     const unsubscribe = onSnapshot(q, (querySnapshot) => {
       const newCheckIns = querySnapshot.docs.map((doc) => ({

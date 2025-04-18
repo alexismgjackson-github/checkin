@@ -24,16 +24,19 @@ export default function CheckInListModal({
             />
           </button>
           <h2>Your Check-Ins</h2>
-          <ul className="check-ins-list">
-            {checkIns.map((checkIn) => (
-              <li key={checkIn.id} className="check-in-list-item">
-                <CheckInsListItem checkIn={checkIn} />
-              </li>
-            ))}
-          </ul>
-          {/*{checkIns.length > 3 ? (
-            <button className="view-more-btn">View more...</button>
-          ) : null}*/}
+          {checkIns.length === 0 ? (
+            <p className="no-checkins-message">
+              Looks a little empty! Please check-in.
+            </p>
+          ) : (
+            <ul className="check-ins-list">
+              {checkIns.map((checkIn) => (
+                <li key={checkIn.id} className="check-in-list-item">
+                  <CheckInsListItem checkIn={checkIn} />
+                </li>
+              ))}
+            </ul>
+          )}
         </div>
       </div>
     </>
