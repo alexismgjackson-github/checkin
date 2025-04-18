@@ -37,9 +37,10 @@
   width: fit-content;
 }
 
-.checkin-list-container h1 {
+.checkin-list-container h2 {
   margin-bottom: 3rem;
   margin-top: 1rem;
+  text-align: center;
 }
 
 .check-ins-list {
@@ -49,6 +50,7 @@
 
 .check-in-list-item {
   align-items: center;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
   display: flex;
   flex-direction: column;
   background-color: var(--color-extralight);
@@ -56,7 +58,7 @@
   border-radius: 0.75rem;
   gap: 2rem;
   margin: auto;
-  padding: 1.5rem;
+  padding: 1.25rem;
   width: 100%;
 }
 
@@ -79,10 +81,19 @@
 
 /* Medium devices (landscape tablets, 768px and up) */
 @media only screen and (min-width: 768px) {
+  .checkin-list-container {
+    padding: 2rem 10rem;
+  }
 }
 
 /* Large devices (laptops/desktops, 992px and up) */
 @media only screen and (min-width: 992px) {
+  .checkin-list-container {
+    padding: 2rem 20rem;
+  }
+  .check-in-list-item {
+    padding: 2rem;
+  }
 }
 
 /* Extra large devices (large laptops and desktops, 1200px and up) */

@@ -23,7 +23,7 @@ export default function CheckInListModal({
               aria-label="Close modal"
             />
           </button>
-          <h1>Your Check-Ins</h1>
+          <h2>Your Check-Ins</h2>
           <ul className="check-ins-list">
             {checkIns.map((checkIn) => (
               <li key={checkIn.id} className="check-in-list-item">
@@ -31,9 +31,9 @@ export default function CheckInListModal({
               </li>
             ))}
           </ul>
-          {checkIns.length > 3 ? (
+          {/*{checkIns.length > 3 ? (
             <button className="view-more-btn">View more...</button>
-          ) : null}
+          ) : null}*/}
         </div>
       </div>
     </>

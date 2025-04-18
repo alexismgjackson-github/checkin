@@ -27,7 +27,7 @@ export default function CheckInForm({
             name="textarea"
             id="textarea"
             placeholder="Write down your thoughts here..."
-            rows={5}
+            rows={6}
             value={newCheckIn}
             onChange={handleChange}
             required

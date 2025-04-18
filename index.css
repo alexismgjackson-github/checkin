@@ -42,12 +42,11 @@ h1,
 h2,
 h3 {
   font-family: var(--font-secondary);
-  font-weight: 400;
+  font-weight: 500;
 }
 
 h1 {
   font-size: 3rem;
-  font-weight: 500;
 }
 
 h2 {
@@ -55,7 +54,6 @@ h2 {
 }
 
 h3 {
-  font-family: var(--font-primary);
   font-size: 2.2rem;
   text-transform: uppercase;
 }
