@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { onSnapshot } from "firebase/firestore";
+import { onSnapshot, query, where } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
 import { useNavigate } from "react-router";
 import CheckInForm from "../components/Home/CheckInForm";
@@ -17,6 +17,10 @@ export default function Home({
   collection,
   addDoc,
 }) {
+  // #########################################################
+  // ######################  USE STATES ######################
+  // #########################################################
+
   // state that initializes with stored check-ins from localStorage (if any)
   // otherwise, starts with an empty array
   // "checkIns" holds all submitted entries
@@ -47,6 +51,10 @@ export default function Home({
 
   const [isOpen, setIsOpen] = useState(false);
 
+  // #########################################################
+  // ###################### SET UP LOGIC #####################
+  // #########################################################
+
   // global variable
 
   const collectionName = "checkins";
@@ -64,6 +72,14 @@ export default function Home({
     month: "long", // for full month name (e.g., 'April')
     day: "numeric", // for the day of the month
   });
+
+  // log out the current authenticated user
+
+  const navigate = useNavigate();
+
+  // #########################################################
+  // ###################### FUNCTIONS ########################
+  // #########################################################
 
   // loops through data (an array of emotion objects)
   // renders a button for each emotion
@@ -91,11 +107,7 @@ export default function Home({
     console.log("modal button clicked");
   };
 
-  // log out the current authenticated user
-
-  const navigate = useNavigate();
-
-  function logOut() {
+  const logOut = () => {
     signOut(auth)
       .then(() => {
         // if the logout is successful - delays the redirection to login page by 2 seconds
@@ -111,16 +123,22 @@ export default function Home({
         console.error(error.message);
         console.log("User failed to logout of the app");
       });
-  }
+  };
 
-  // uses onSnapshot() to listen for real-time updates
-  // maps firestore documents into local checkIns state
-  // returns the unsubscribe function that firestore provides so you can stop listening when needed
+  // if no user is provided, the function immediately exits by returning undefined
+  // creates a reference to a firestore collection using the collection function (instance, collection name)
+  // filters the checkInRef collection based on the uid field
+  // every time there is a change in the data that matches the query, the onSnapshot callback is triggered
+  // update the state (setCheckIns) with new check-ins whenever the data changes in firestore
+  // return an unsubscribe function to stop listening for real-time updates
 
   const fetchInRealtimeAndRenderCheckInsFromDB = (user) => {
-    const checkInRef = collection(db, collectionName);
+    if (!user) return;
 
-    const unsubscribe = onSnapshot(checkInRef, (querySnapshot) => {
+    const checkInRef = collection(db, collectionName);
+    const q = query(checkInRef, where("uid", "==", user.uid));
+
+    const unsubscribe = onSnapshot(q, (querySnapshot) => {
       const newCheckIns = querySnapshot.docs.map((doc) => ({
         ...doc.data(),
         id: doc.id,
@@ -204,6 +222,10 @@ export default function Home({
     setFieldsetMessage("");
   };
 
+  // ##########################################################
+  // ######################  USE EFFECTS ######################
+  // ##########################################################
+
   // only runs once (because of the empty [] dependency array)
   // uses firebase onAuthStateChanged() to listen for login/logout changes
 
@@ -216,17 +238,6 @@ export default function Home({
         console.log("User has successfully logged out");
       }
     });
-  }, []);
-
-  // sets up the listener on mount
-  // cleans up with unsubscribe() when the component unmounts
-
-  useEffect(() => {
-    const unsubscribe = fetchInRealtimeAndRenderCheckInsFromDB();
-
-    return () => {
-      unsubscribe();
-    };
   }, []);
 
   // useState(new Date()): holds the current time
