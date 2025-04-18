@@ -2,11 +2,12 @@ import { useState, useEffect } from "react";
 import { onSnapshot, query, where, orderBy } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
 import { useNavigate } from "react-router";
+import { v4 as uuidv4 } from "uuid"; // generates random UUIDs from the uuid package
 import CheckInForm from "../components/Home/CheckInForm";
 import CheckInListModal from "../components/Home/CheckInListModal";
 import EmotionalStateButtons from "../components/Home/EmotionalStateButtons.jsx";
 import data from "../src/emotionsData.js";
-import { v4 as uuidv4 } from "uuid"; // generates random UUIDs from the uuid package
+
 import "./Home.css";
 
 export default function Home({
