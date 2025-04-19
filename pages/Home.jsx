@@ -1,5 +1,13 @@
 import { useState, useEffect } from "react";
-import { onSnapshot, query, where, orderBy } from "firebase/firestore";
+import {
+  onSnapshot,
+  query,
+  where,
+  orderBy,
+  doc,
+  deleteDoc,
+  updateDoc,
+} from "firebase/firestore";
 import { getAuth } from "firebase/auth";
 import { useNavigate } from "react-router";
 import { v4 as uuidv4 } from "uuid"; // generates random UUIDs from the uuid package
@@ -48,9 +56,17 @@ export default function Home({
 
   const [selectedEmotion, setSelectedEmotion] = useState(null);
 
-  // state for modal
+  // state to track whether modal is open or closed
 
   const [isOpen, setIsOpen] = useState(false);
+
+  // state to track which check-in is currently being edited
+
+  const [isEditingCheckIn, setIsEditingCheckIn] = useState(null);
+
+  // state that stores the text content of the check-in being edited
+
+  const [editCheckInText, setEditCheckInText] = useState("");
 
   // #########################################################
   // ###################### SET UP LOGIC #####################
@@ -160,6 +176,8 @@ export default function Home({
     setNewCheckIn(event.target.value);
   };
 
+  // ADD CHECK-IN to firestore database (firebase & ui)
+
   const addNewCheckIn = async (event) => {
     // prevents the default form behavior
 
@@ -200,7 +218,9 @@ export default function Home({
         emojiUrl: selectedEmotionData ? selectedEmotionData.url : "",
       });
 
-      console.log("Document written with ID:", docRef.id); // logs the Firebase document ID so you can verify that it was saved successfully
+      // logs the Firebase document ID so you can verify that it was saved successfully
+
+      console.log("Document written with ID:", docRef.id);
 
       // updates the local state (checkIns) by adding the new check-in at the top of the list
       // keeps the UI in sync with what's in the database
@@ -225,6 +245,72 @@ export default function Home({
     setSelectedEmotion(null);
     setCurrentFeeling("");
     setFieldsetMessage("");
+  };
+
+  // DELETE CHECK-IN from firestore database (firebase & ui)
+
+  const deleteCheckIn = async (id) => {
+    try {
+      // deletes the check-in with the specified id from the "checkins" collection in firestore
+
+      await deleteDoc(doc(db, "checkins", id));
+      console.log("Check-in deleted successfully");
+
+      // updates the local state (checkIns) by deleting the check-in
+      // keeps the UI in sync with what's in the database
+
+      setCheckIns((prevCheckIns) =>
+        prevCheckIns.filter((checkIn) => checkIn.id !== id)
+      );
+    } catch (error) {
+      // if there's an error during the deletion, it logs the error to the console
+
+      console.error("Error deleting check-in:", error);
+    }
+  };
+
+  // show the edit textarea pre-filled with the current check-in text
+
+  const editCheckIn = (checkIn) => {
+    setIsEditingCheckIn(checkIn);
+    setEditCheckInText(checkIn.text);
+  };
+
+  // UPDATE CHECK-IN text changes (firebase & ui)
+
+  const updateCheckIn = async () => {
+    // early exit for invalid input
+    if (!isEditingCheckIn || !editCheckInText.trim()) return;
+
+    try {
+      // get the firestore document reference
+      const checkInRef = doc(db, "checkins", isEditingCheckIn.id);
+
+      // update firestore
+
+      await updateDoc(checkInRef, {
+        text: editCheckInText,
+      });
+
+      console.log("Check-in updated successfully");
+
+      // update the UI immediately (local state)
+
+      setCheckIns((prevCheckIns) =>
+        prevCheckIns.map((checkIn) =>
+          checkIn.id === isEditingCheckIn.id
+            ? { ...checkIn, text: editCheckInText }
+            : checkIn
+        )
+      );
+
+      //  reset the edit mode
+
+      setIsEditingCheckIn(null);
+      setEditCheckInText("");
+    } catch (error) {
+      console.error("Error updating check-in:", error);
+    }
   };
 
   // ##########################################################
@@ -297,6 +383,13 @@ export default function Home({
           checkIns={checkIns}
           isOpen={isOpen}
           toggleModalVisibility={toggleModalVisibility}
+          deleteCheckIn={deleteCheckIn}
+          editCheckIn={editCheckIn}
+          updateCheckIn={updateCheckIn}
+          isEditingCheckIn={isEditingCheckIn}
+          setIsEditingCheckIn={setIsEditingCheckIn}
+          editCheckInText={editCheckInText}
+          setEditCheckInText={setEditCheckInText}
         />
         <p className="current-date">{formattedDate}</p>
         <h1>How are you feeling?</h1>

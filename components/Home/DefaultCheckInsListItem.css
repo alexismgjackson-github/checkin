@@ -1,22 +1,26 @@
-.check-in-list-item-header {
-  align-items: center;
+.default-check-in-list-item-buttons {
   display: flex;
+  gap: 4rem;
+  justify-content: center;
+  margin-top: 2rem;
 }
 
-.check-in-list-item-feeling {
-  margin-right: 1rem;
-  width: 3rem;
-}
-
-.check-in-list-item-date {
+.delete-btn,
+.edit-btn {
+  background-color: inherit;
   color: var(--color-medium);
-  font-size: 1.4rem;
-  font-weight: 500;
+  font-family: var(--font-primary);
+  font-size: 1.2rem;
+  font-weight: 600;
+  opacity: 0.5;
+  padding: 0;
   text-transform: uppercase;
+  width: fit-content;
 }
 
-.check-in-list-item-snippet {
-  font-family: var(--font-secondary);
+.delete-btn:hover,
+.edit-btn:hover {
+  opacity: 0.25;
 }
 
 /* Extra small devices (phones, 600px and down) */
@@ -33,10 +37,6 @@
 
 /* Large devices (laptops/desktops, 992px and up) */
 @media only screen and (min-width: 992px) {
-  .check-in-list-item {
-    padding: 2rem;
-  }
-
   .check-in-list-item-left {
     margin-right: 2rem;
   }

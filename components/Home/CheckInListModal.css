@@ -63,17 +63,36 @@
   border-radius: 0.75rem;
   gap: 2rem;
   margin: auto;
-  padding: 1.25rem;
+  padding: 1.5rem;
   width: 100%;
 }
 
-.view-more-btn {
-  font-size: 1.8rem;
+.check-in-list-item-header {
+  align-items: center;
+  display: flex;
+}
+
+.check-in-list-item-feeling {
+  margin-right: 1.25rem;
+  width: 3rem;
+}
+
+.check-in-list-item-date {
+  color: var(--color-medium);
+  font-size: 1.4rem;
+  font-style: italic;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.check-in-list-item-body {
   margin: auto;
-  margin-top: 2rem;
-  max-width: 50rem;
-  min-width: 25rem;
-  padding: 1rem;
+  width: 100%;
+}
+
+.check-in-list-item-snippet {
+  font-family: var(--font-secondary);
+  text-align: start;
 }
 
 /* Extra small devices (phones, 600px and down) */
@@ -89,15 +108,16 @@
   .checkin-list-container {
     padding: 2rem 10rem;
   }
+  .check-in-list-item-snippet {
+    font-family: var(--font-secondary);
+    text-align: center;
+  }
 }
 
 /* Large devices (laptops/desktops, 992px and up) */
 @media only screen and (min-width: 992px) {
   .checkin-list-container {
     padding: 2rem 20rem;
-  }
-  .check-in-list-item {
-    padding: 2rem;
   }
 }
 

@@ -87,6 +87,7 @@ textarea {
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
   font-family: var(--font-primary);
   font-size: 1.6rem;
+  margin-bottom: 1rem;
   padding: 2rem;
   resize: none;
   width: 100%;

@@ -1,0 +1,55 @@
+textarea.check-in-list-textarea {
+  box-shadow: none;
+  height: fit-content;
+  font-family: var(--font-secondary);
+  padding: 1.5rem;
+  width: 100%;
+}
+
+.editing-check-in-list-item-buttons {
+  display: flex;
+  gap: 4rem;
+  margin-top: 2rem;
+  justify-content: center;
+}
+
+.cancel-btn,
+.update-btn {
+  background-color: inherit;
+  color: var(--color-medium);
+  font-family: var(--font-primary);
+  font-size: 1.2rem;
+  font-weight: 600;
+  opacity: 0.5;
+  padding: 0;
+  text-transform: uppercase;
+  width: fit-content;
+}
+
+.cancel-btn:hover,
+.update-btn:hover {
+  opacity: 0.25;
+}
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+  .check-in-list-item-left {
+    margin-right: 2rem;
+  }
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+}
