@@ -52,8 +52,8 @@ export default function CreateAccountCard({
 
         const errorCode = error.code;
         const errorMessage = error.message;
-        console.log(`CREATE ACCOUNT ERROR: ${errorCode} - ${errorMessage}`);
-        console.log(`User's account creation failed`);
+        // console.log(`CREATE ACCOUNT ERROR: ${errorCode} - ${errorMessage}`);
+        // console.log(`User's account creation failed`);
 
         // error messages are displayed for create account card
 
