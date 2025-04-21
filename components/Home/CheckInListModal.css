@@ -19,7 +19,7 @@
   position: fixed;
   top: 0;
   width: 100vw;
-  z-index: 2000;
+  z-index: 3000;
 }
 
 .close-checkin-list-modal-btn {

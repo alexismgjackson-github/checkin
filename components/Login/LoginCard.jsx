@@ -29,13 +29,13 @@ export default function LoginCard({
         setTimeout(() => {
           navigate(`/home`);
         }, 1000); // 1 second
-        console.log(`User is logging in with Google`);
+        // console.log(`User is logging in with Google`);
       })
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
         const email = error.customData.email;
-        console.log(`GOOGLE ERROR: ${email} - ${errorCode} - ${errorMessage}`);
+        // console.log(`GOOGLE ERROR: ${email} - ${errorCode} - ${errorMessage}`);
       });
   };
 
@@ -61,8 +61,8 @@ export default function LoginCard({
         // if the login fails - error code/message are console logged and login message is displayed
         const errorCode = error.code;
         const errorMessage = error.message;
-        console.log(`LOG-IN ERROR: ${errorCode} - ${errorMessage}`);
-        console.log(`User's log-in credentials failed`);
+        // console.log(`LOG-IN ERROR: ${errorCode} - ${errorMessage}`);
+        // console.log(`User's log-in credentials failed`);
         setLoginMessage("Please enter valid user credentials!");
       });
   };
