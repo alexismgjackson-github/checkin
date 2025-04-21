@@ -129,35 +129,39 @@ export default function Home({
       .then(() => {
         // if the logout is successful - delays the redirection to login page by 2 seconds
 
-        console.log("User is successfully logging out");
+        // console.log("User is successfully logging out");
         setTimeout(() => {
           navigate("/");
         }, 2000); // 2 seconds
       })
       .catch((error) => {
         // if the logout fails -  the error message is console logged
-
-        console.error(error.message);
-        console.log("User failed to logout of the app");
+        // console.error(error.message);
+        // console.log("User failed to logout of the app");
       });
   };
 
-  // if no user is provided, the function immediately exits by returning undefined
-  // creates a reference to a firestore collection using the collection function (instance, collection name)
-  // filters the checkInRef collection based on the uid field
-  // every time there is a change in the data that matches the query, the onSnapshot callback is triggered
-  // update the state (setCheckIns) with new check-ins whenever the data changes in firestore
-  // return an unsubscribe function to stop listening for real-time updates
+  // listens to real-time updates from a firestore database and updates the app’s UI whenever there's a change
 
   const fetchInRealtimeAndRenderCheckInsFromDB = (user) => {
+    // if no user is provided, the function immediately exits by returning undefined
+
     if (!user) return;
 
+    // creates a reference to a firestore collection using the collection function (instance, collection name)
+
     const checkInRef = collection(db, collectionName);
+
+    // filters the checkInRef collection based on the uid field
+
     const q = query(
       checkInRef,
       where("uid", "==", user.uid),
       orderBy("date", "desc")
     );
+
+    // every time there is a change in the data that matches the query, the onSnapshot callback is triggered
+    // update the state (setCheckIns) with new check-ins whenever the data changes in firestore
 
     const unsubscribe = onSnapshot(q, (querySnapshot) => {
       const newCheckIns = querySnapshot.docs.map((doc) => ({
@@ -167,6 +171,9 @@ export default function Home({
 
       setCheckIns(newCheckIns);
     });
+
+    // return an unsubscribe function to stop listening for real-time updates
+
     return unsubscribe;
   };
 
@@ -220,7 +227,7 @@ export default function Home({
 
       // logs the Firebase document ID so you can verify that it was saved successfully
 
-      console.log("Document written with ID:", docRef.id);
+      // console.log("Document written with ID:", docRef.id);
 
       // updates the local state (checkIns) by adding the new check-in at the top of the list
       // keeps the UI in sync with what's in the database
@@ -236,7 +243,7 @@ export default function Home({
         ...checkIns,
       ]);
     } catch (e) {
-      console.error("Error adding document:", e); // if there's an error (like network failure), it logs the issue to the console
+      // console.error("Error adding document:", e);
     }
 
     // resets the form inputs and error messages so the user can start a fresh check-in
@@ -254,7 +261,7 @@ export default function Home({
       // deletes the check-in with the specified id from the "checkins" collection in firestore
 
       await deleteDoc(doc(db, "checkins", id));
-      console.log("Check-in deleted successfully");
+      // console.log("Check-in deleted successfully");
 
       // updates the local state (checkIns) by deleting the check-in
       // keeps the UI in sync with what's in the database
@@ -264,8 +271,7 @@ export default function Home({
       );
     } catch (error) {
       // if there's an error during the deletion, it logs the error to the console
-
-      console.error("Error deleting check-in:", error);
+      // console.error("Error deleting check-in:", error);
     }
   };
 
@@ -292,7 +298,7 @@ export default function Home({
         text: editCheckInText,
       });
 
-      console.log("Check-in updated successfully");
+      // console.log("Check-in updated successfully");
 
       // update the UI immediately (local state)
 
@@ -304,12 +310,12 @@ export default function Home({
         )
       );
 
-      //  reset the edit mode
+      // reset the edit mode
 
       setIsEditingCheckIn(null);
       setEditCheckInText("");
     } catch (error) {
-      console.error("Error updating check-in:", error);
+      // console.error("Error updating check-in:", error);
     }
   };
 
@@ -323,10 +329,10 @@ export default function Home({
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
-        console.log(`User has successfully logged in`);
+        // console.log(`User has successfully logged in`);
         fetchInRealtimeAndRenderCheckInsFromDB(user);
       } else {
-        console.log("User has successfully logged out");
+        // console.log("User has successfully logged out");
       }
     });
   }, []);
