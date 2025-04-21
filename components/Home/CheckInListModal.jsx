@@ -37,7 +37,10 @@ export default function CheckInListModal({
           ) : (
             <ul className="check-ins-list">
               {checkIns.map((checkIn) => (
-                <li key={checkIn.id} className="check-in-list-item">
+                <li
+                  key={checkIn.id}
+                  className="check-in-list-item animate__animated animate__fadeIn"
+                >
                   <div className="check-in-list-item-header">
                     {checkIn.emojiUrl && (
                       <img
