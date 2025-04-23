@@ -49,7 +49,7 @@ export default function LoginCard({
         // if the login is successful - delays the redirection to home page by 2 seconds
         // & clear input fields and messages
 
-        console.log(`User is successfully logging in`);
+        // console.log(`User is successfully logging in`);
         setTimeout(() => {
           navigate(`/home`);
         }, 2000); // 2 seconds
