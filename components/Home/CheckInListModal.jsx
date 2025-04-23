@@ -47,7 +47,8 @@ export default function CheckInListModal({
                       />
                     )}
                     <div className="check-in-list-item-date">
-                      {checkIn.date} @ {checkIn.timestamp}
+                      {checkIn.timestamp &&
+                        checkIn.timestamp.toDate().toLocaleString()}
                     </div>
                   </div>
                   <div className="check-in-list-item-body">

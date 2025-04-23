@@ -7,10 +7,10 @@ import {
   doc,
   deleteDoc,
   updateDoc,
+  serverTimestamp,
 } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
 import { useNavigate } from "react-router";
-import { v4 as uuidv4 } from "uuid"; // generates random UUIDs from the uuid package
 import CheckInForm from "../components/Home/CheckInForm";
 import CheckInListModal from "../components/Home/CheckInListModal";
 import EmotionalStateButtons from "../components/Home/EmotionalStateButtons.jsx";
@@ -39,10 +39,6 @@ export default function Home({
   // state that holds the value of the current check-in the user is typing
 
   const [newCheckIn, setNewCheckIn] = useState("");
-
-  // state for time
-
-  const [time, setTime] = useState(new Date());
 
   // state to show an error if the user tries to submit without selecting an emotion
 
@@ -117,7 +113,6 @@ export default function Home({
   });
 
   // toggles the isOpen state (opens/closes the modal)
-  // logs a message to the console when the button is clicked
 
   const toggleModalVisibility = () => {
     isOpen ? setIsOpen(false) : setIsOpen(true);
@@ -135,7 +130,6 @@ export default function Home({
         }, 2000); // 2 seconds
       })
       .catch((error) => {
-        // if the logout fails -  the error message is console logged
         // console.error(error.message);
         // console.log("User failed to logout of the app");
       });
@@ -157,7 +151,7 @@ export default function Home({
     const q = query(
       checkInRef,
       where("uid", "==", user.uid),
-      orderBy("date", "desc")
+      orderBy("timestamp", "desc")
     );
 
     // every time there is a change in the data that matches the query, the onSnapshot callback is triggered
@@ -217,31 +211,14 @@ export default function Home({
 
     try {
       const docRef = await addDoc(collection(db, collectionName), {
-        id: uuidv4(),
-        uid: getAuth().currentUser?.uid || "anonymous",
+        uid: getAuth().currentUser?.uid || "Unknown",
         text: newCheckIn,
-        timestamp: time.toLocaleTimeString(),
-        date: formattedDate,
+        date: formattedDate, // for display
+        timestamp: serverTimestamp(),
         emojiUrl: selectedEmotionData ? selectedEmotionData.url : "",
       });
 
-      // logs the Firebase document ID so you can verify that it was saved successfully
-
       // console.log("Document written with ID:", docRef.id);
-
-      // updates the local state (checkIns) by adding the new check-in at the top of the list
-      // keeps the UI in sync with what's in the database
-
-      setCheckIns([
-        {
-          id: docRef.id,
-          text: newCheckIn,
-          timestamp: time.toLocaleTimeString(),
-          date: formattedDate,
-          emojiUrl: selectedEmotionData ? selectedEmotionData.url : "",
-        },
-        ...checkIns,
-      ]);
     } catch (e) {
       // console.error("Error adding document:", e);
     }
@@ -335,20 +312,6 @@ export default function Home({
         // console.log("User has successfully logged out");
       }
     });
-  }, []);
-
-  // useState(new Date()): holds the current time
-  // setInterval: updates the time every second
-  // toLocaleTimeString(): formats the time like 10:45:12 AM
-
-  useEffect(() => {
-    const intervalId = setInterval(() => {
-      setTime(new Date());
-    }, 1000); // updates every second
-
-    // Cleanup the interval when the component unmounts
-
-    return () => clearInterval(intervalId);
   }, []);
 
   // if the modal is open prevent the page from scrolling, else allowing scrolling to resume
