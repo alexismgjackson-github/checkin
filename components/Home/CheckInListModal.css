@@ -34,6 +34,12 @@
   text-align: center;
 }
 
+.checkin-list-scroll-wrapper {
+  overflow-y: auto;
+  max-height: calc(100vh - 10rem);
+  padding-bottom: 2rem;
+}
+
 .no-checkins-message {
   font-style: italic;
   opacity: 0.5;
