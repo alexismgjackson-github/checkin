@@ -14,6 +14,8 @@ export default function LoginCard({
   setLoginMessage,
   toggleLoginPasswordVisibility,
   showLoginPassword,
+  googleLoginMessage,
+  setGoogleLoginMessage,
 }) {
   // handles google login for a user using firebase authentication
   // shows a google login popup, navigates to home page after a successful login (with a 1-second delay)
@@ -30,12 +32,14 @@ export default function LoginCard({
           navigate(`/home`);
         }, 1000); // 1 second
         // console.log(`User is logging in with Google`);
+        setGoogleLoginMessage("");
       })
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
         const email = error.customData.email;
         // console.log(`GOOGLE ERROR: ${email} - ${errorCode} - ${errorMessage}`);
+        setGoogleLoginMessage("Google sign-in failed. Please try again.");
       });
   };
 
@@ -141,6 +145,9 @@ export default function LoginCard({
           />
           Continue with Google
         </button>
+        <span className="google-login-card-message error">
+          {googleLoginMessage}
+        </span>
       </div>
     </>
   );

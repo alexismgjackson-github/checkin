@@ -7,7 +7,7 @@
   gap: 2rem;
   margin: 2rem auto auto auto;
   max-width: 50rem;
-  padding: 4rem 2rem;
+  padding: 4rem 2rem 2rem 2rem;
 }
 
 .login-form {
@@ -15,7 +15,8 @@
   gap: 2rem;
 }
 
-.login-card-message {
+.login-card-message,
+.google-login-card-message {
   font-size: 1.4rem;
   font-style: italic;
   height: 1.6rem;
