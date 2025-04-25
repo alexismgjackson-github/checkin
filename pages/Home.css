@@ -27,6 +27,11 @@
   width: 3rem;
 }
 
+.checklist-count {
+  font-size: 1.6rem;
+  margin-left: 0.25rem;
+}
+
 .log-out-icon {
   width: 2.4rem;
 }

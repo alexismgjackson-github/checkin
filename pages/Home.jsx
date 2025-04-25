@@ -332,10 +332,11 @@ export default function Home({
               <img
                 className="checkin-list-icon"
                 src="./assets/icons/list.svg"
-                alt="Log out"
-                aria-label="Log out"
+                alt="View check-ins"
+                aria-label="View check-ins"
               />
             </button>
+            <span className="checklist-count">{checkIns.length}</span>
           </div>
           <div className="log-out-btn-container">
             <button className="log-out-btn" onClick={logOut}>
