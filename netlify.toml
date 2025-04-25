@@ -2,3 +2,8 @@
   for = "/*"
   [headers.values]
     Cross-Origin-Opener-Policy = "unsafe-none"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
