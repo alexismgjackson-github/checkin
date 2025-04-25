@@ -8,7 +8,7 @@ textarea.check-in-list-textarea {
 
 .editing-check-in-list-item-buttons {
   display: flex;
-  gap: 4rem;
+  gap: 3rem;
   margin-top: 2rem;
   justify-content: center;
 }

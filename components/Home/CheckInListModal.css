@@ -34,8 +34,14 @@
   text-align: center;
 }
 
+.check-in-list-length {
+  font-size: 1.5rem;
+  opacity: 0.6;
+}
+
 .checkin-list-scroll-wrapper {
   overflow-y: auto;
+  margin-top: 2rem;
   max-height: calc(100vh - 10rem);
   padding-bottom: 10rem;
 }

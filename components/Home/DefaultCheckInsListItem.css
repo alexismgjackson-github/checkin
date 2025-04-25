@@ -1,6 +1,6 @@
 .default-check-in-list-item-buttons {
   display: flex;
-  gap: 4rem;
+  gap: 3rem;
   justify-content: center;
   margin-top: 2rem;
 }

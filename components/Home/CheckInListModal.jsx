@@ -32,6 +32,11 @@ export default function CheckInListModal({
             />
           </button>
           <h2>Your Check-Ins</h2>
+          {checkIns.length > 0 ? (
+            <span className="check-in-list-length">
+              {checkIns.length} check-ins found
+            </span>
+          ) : null}
           <div className="checkin-list-scroll-wrapper">
             {checkIns.length === 0 ? (
               <p className="no-checkins-message">It looks a little empty...</p>
