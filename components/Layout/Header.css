@@ -12,7 +12,7 @@ header {
   color: var(--color-medium);
   font-family: var(--font-secondary);
   font-size: 1.8rem;
-  font-weight: 600;
+  font-weight: 500;
   margin-left: 0.375rem;
   text-transform: uppercase;
 }
