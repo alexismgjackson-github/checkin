@@ -40,7 +40,7 @@ I wanted to build an app that allowed me to journal my mental health. Also, I wa
 - Set up Cloud Firestore in project and configure it for use with the application
 - Add documents to Firestore collections and understand how collections and documents are structured
 - Identify and work with different data types supported by Firestore for storing information
-- Attach unique user IDs (UIDs) to posts for personalized data management
+- Attach unique user IDs (UIDs) to check-ins for personalized data management
 - Add creation timestamps to documents using the serverTimestamp method
 - Retrieve data from Firestore using getDocs for single-fetch operations
 - Implement real-time data updates in the application using the onSnapshot method
