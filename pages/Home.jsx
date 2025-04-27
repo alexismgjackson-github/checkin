@@ -30,10 +30,6 @@ export default function Home({
   // ######################  USE STATES ######################
   // #########################################################
 
-  // state that initializes with stored check-ins from localStorage (if any)
-  // otherwise, starts with an empty array
-  // "checkIns" holds all submitted entries
-
   const [checkIns, setCheckIns] = useState([]);
 
   // state that holds the value of the current check-in the user is typing
@@ -94,9 +90,7 @@ export default function Home({
   // ###################### FUNCTIONS ########################
   // #########################################################
 
-  // loops through data (an array of emotion objects)
-  // renders a button for each emotion
-  // when clicked, sets the selected emotion and currentFeeling
+  // dynamically renders a list of clickable emotion buttons, tracks which one is selected, and highlights it appropriately
 
   const emojiButtonElements = data.map((button) => {
     return (
@@ -104,30 +98,27 @@ export default function Home({
         key={button.id}
         {...button}
         onEmotionClick={(emotionLabel) => {
-          setSelectedEmotion(emotionLabel); // set the selected emotion
-          setCurrentFeeling(emotionLabel); // update the current feeling text
+          setSelectedEmotion(emotionLabel);
+          setCurrentFeeling(emotionLabel);
         }}
-        isSelected={selectedEmotion === button.label} // pass whether the button is selected
+        isSelected={selectedEmotion === button.label}
       />
     );
   });
 
-  // toggles the isOpen state (opens/closes the modal)
+  // opens or closes the modal
 
-  const toggleModalVisibility = () => {
-    isOpen ? setIsOpen(false) : setIsOpen(true);
-    // console.log("Modal's close button clicked");
-  };
+  const toggleModalVisibility = () => setIsOpen((prevIsOpen) => !prevIsOpen);
+
+  // signs out the user via firebase auth, then redirects them to the homepage after a short delay
 
   const logOut = () => {
     signOut(auth)
       .then(() => {
-        // if the logout is successful - delays the redirection to login page by 2 seconds
-
         // console.log("User is successfully logging out");
         setTimeout(() => {
           navigate("/");
-        }, 2000); // 2 seconds
+        }, 2000);
       })
       .catch((error) => {
         // console.error(error.message);
@@ -135,29 +126,28 @@ export default function Home({
       });
   };
 
-  // listens to real-time updates from a firestore database and updates the app’s UI whenever there's a change
+  // fetches the logged-in user’s check-ins from firestore in real time and keeps them up to date as they change
 
   const fetchInRealtimeAndRenderCheckInsFromDB = (user) => {
-    // if no user is provided, the function immediately exits by returning undefined
-
+    // if no user is logged in, stop — don’t try to fetch anything
     if (!user) return;
 
-    // creates a reference to a firestore collection using the collection function (instance, collection name)
-
+    // points to the "checkins" collection in your firestore database
     const checkInRef = collection(db, collectionName);
 
-    // filters the checkInRef collection based on the uid field
-
+    // filters the collection so you only get (check-ins) where the uid matches the current user's ID
+    // orders results by timestamp, newest first
     const q = query(
       checkInRef,
       where("uid", "==", user.uid),
       orderBy("timestamp", "desc")
     );
 
-    // every time there is a change in the data that matches the query, the onSnapshot callback is triggered
-    // update the state (setCheckIns) with new check-ins whenever the data changes in firestore
-
+    // subscribes to real-time updates on that query
     const unsubscribe = onSnapshot(q, (querySnapshot) => {
+      // maps over all returned docs
+      // grabs their data and includes the document ID
+      // updates your checkIns state with the new list
       const newCheckIns = querySnapshot.docs.map((doc) => ({
         ...doc.data(),
         id: doc.id,
@@ -166,54 +156,44 @@ export default function Home({
       setCheckIns(newCheckIns);
     });
 
-    // return an unsubscribe function to stop listening for real-time updates
-
+    // stops listening when the component unmounts (if needed)
     return unsubscribe;
   };
 
-  // updates the text area as the user types
+  // standard input change handler for a controlled form field
 
   const handleChange = async (event) => {
     setNewCheckIn(event.target.value);
   };
 
-  // ADD CHECK-IN to firestore database (firebase & ui)
+  // creates a new check-in entry in firestore, but only after validating that the user has typed something and selected an emotion
 
   const addNewCheckIn = async (event) => {
-    // prevents the default form behavior
-
+    // prevents the form’s default page refresh on submit
     event.preventDefault();
 
-    // checks if the user selected an emotion
-    // if not, it shows an error message and stops further execution using return
-
+    // if the user didn't click on an emotion, show an error message and stop
     if (!selectedEmotion) {
       setFieldsetMessage("Please select an emotion");
       return;
     }
 
-    // checks if the textarea is empty or just whitespace
-    // if so, it silently returns without doing anything
-
+    // if the input is empty (or just spaces), do nothing
     if (!newCheckIn.trim()) {
       return;
     }
 
-    // looks up the selected emotion in the data array to find the corresponding emoji URL
-
+    // looks up the full emotion object (e.g., to get the emojiUrl) based on the selected label
     const selectedEmotionData = data.find(
       (emotion) => emotion.label === selectedEmotion
     );
 
-    // addDoc() adds a new document to the "checkins" collection
-    // uuidv4() generates a unique ID for the check-in
-    // it includes the check-in text, time, date, and matching emoji
-
+    // adds a new document to your "checkins" collection
     try {
       const docRef = await addDoc(collection(db, collectionName), {
         uid: getAuth().currentUser?.uid || "Unknown",
         text: newCheckIn,
-        date: formattedDate, // for display
+        date: formattedDate,
         timestamp: serverTimestamp(),
         emojiUrl: selectedEmotionData ? selectedEmotionData.url : "",
       });
@@ -223,62 +203,54 @@ export default function Home({
       // console.error("Error adding document:", e);
     }
 
-    // resets the form inputs and error messages so the user can start a fresh check-in
-
+    // resets the form
     setNewCheckIn("");
     setSelectedEmotion(null);
     setCurrentFeeling("");
     setFieldsetMessage("");
   };
 
-  // DELETE CHECK-IN from firestore database (firebase & ui)
+  // deletes a check-in from both firebase firestore and local UI state
 
   const deleteCheckIn = async (id) => {
+    // locates the specific check-in document in the "checkins" collection using its id & deletes it from firestore
     try {
-      // deletes the check-in with the specified id from the "checkins" collection in firestore
-
       await deleteDoc(doc(db, "checkins", id));
       // console.log("Check-in deleted successfully");
 
-      // updates the local state (checkIns) by deleting the check-in
-      // keeps the UI in sync with what's in the database
-
+      // immediately updates your local checkIns state by removing the deleted one
       setCheckIns((prevCheckIns) =>
         prevCheckIns.filter((checkIn) => checkIn.id !== id)
       );
     } catch (error) {
-      // if there's an error during the deletion, it logs the error to the console
       // console.error("Error deleting check-in:", error);
     }
   };
 
-  // show the edit textarea pre-filled with the current check-in text
+  // initiates editing mode for a selected check-in
 
   const editCheckIn = (checkIn) => {
     setIsEditingCheckIn(checkIn);
     setEditCheckInText(checkIn.text);
   };
 
-  // UPDATE CHECK-IN text changes (firebase & ui)
+  // saves any edits made to a check-in, updates it in both firestore and local state
 
   const updateCheckIn = async () => {
-    // early exit for invalid input
     if (!isEditingCheckIn || !editCheckInText.trim()) return;
 
     try {
-      // get the firestore document reference
+      // locates the check-in document in firestore using its id
       const checkInRef = doc(db, "checkins", isEditingCheckIn.id);
 
-      // update firestore
-
+      // updates the text field of the check-in in firestore with the new editCheckInText value
       await updateDoc(checkInRef, {
         text: editCheckInText,
       });
 
       // console.log("Check-in updated successfully");
 
-      // update the UI immediately (local state)
-
+      // immediately updates (optimistic updates) the UI to reflect the edited text
       setCheckIns((prevCheckIns) =>
         prevCheckIns.map((checkIn) =>
           checkIn.id === isEditingCheckIn.id
@@ -287,8 +259,7 @@ export default function Home({
         )
       );
 
-      // reset the edit mode
-
+      // reset the editing state
       setIsEditingCheckIn(null);
       setEditCheckInText("");
     } catch (error) {
@@ -314,7 +285,7 @@ export default function Home({
     });
   }, []);
 
-  // if the modal is open prevent the page from scrolling, else allowing scrolling to resume
+  // disable scrolling on the background when modal is open
 
   useEffect(() => {
     document.body.style.overflow = isOpen ? "hidden" : "unset";
