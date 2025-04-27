@@ -1,6 +1,6 @@
 # _CHECK-IN - CRUD APP_
 
-To Do List is a fully responsive CRUD app allows the user to record daily mental health check-ins.
+Check-In is a fully responsive CRUD app allows the user to record daily mental health check-ins.
 
 ## FEATURES
 
