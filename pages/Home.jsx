@@ -30,6 +30,8 @@ export default function Home({
   // ######################  USE STATES ######################
   // #########################################################
 
+  // state to store and manage a list of check-ins, starting as empty
+
   const [checkIns, setCheckIns] = useState([]);
 
   // state that holds the value of the current check-in the user is typing
