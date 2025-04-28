@@ -26,7 +26,6 @@ I wanted to build an app that allowed me to journal my mental health. Also, I wa
 
 ### _FIREBASE AUTHENTICATION_
 
-- Understand the basic principles and importance of authentication in web applications
 - Set up Firebase for managing authentication processes
 - Implement user registration using email/password in a secure manner
 - Enable users to log in with their email/password and handle authentication errors
@@ -36,7 +35,6 @@ I wanted to build an app that allowed me to journal my mental health. Also, I wa
 
 ### _FIREBASE FIRESTORE_
 
-- Understand the purpose and functionality of Cloud Firestore in managing application data
 - Set up Cloud Firestore in project and configure it for use with the application
 - Add documents to Firestore collections and understand how collections and documents are structured
 - Identify and work with different data types supported by Firestore for storing information
