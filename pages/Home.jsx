@@ -1,15 +1,15 @@
 import { useState, useEffect } from "react";
 import {
-  onSnapshot,
-  query,
-  where,
-  orderBy,
-  doc,
-  deleteDoc,
-  updateDoc,
-  serverTimestamp,
+  onSnapshot, // sets up a listener on a Firestore document/collection so that you can receive real-time updates whenever the data changes
+  query, // filters or sorts data from a collection before retrieving it
+  where, // filters documents in a collection by specifying a condition on a field
+  orderBy, // query to sort documents by a specific field, either in ascending or descending order
+  doc, // references a specific document in a collection — either to read, write, update, or delete it
+  deleteDoc, // permanently removes a specific document from a collection
+  updateDoc, // modifies specific fields in an existing document without overwriting the entire document
+  serverTimestamp, // sets a field to the server's current time - ensuring accurate and consistent timestamps
 } from "firebase/firestore";
-import { getAuth } from "firebase/auth";
+import { getAuth } from "firebase/auth"; 
 import { useNavigate } from "react-router";
 import CheckInForm from "../components/Home/CheckInForm";
 import CheckInListModal from "../components/Home/CheckInListModal";

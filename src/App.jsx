@@ -1,15 +1,17 @@
 import { useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router";
 import {
-  signInWithEmailAndPassword,
-  createUserWithEmailAndPassword,
-  onAuthStateChanged,
-  signOut,
-  GoogleAuthProvider,
-  signInWithPopup,
+  signInWithEmailAndPassword, // signs in a user using their email address and password.
+  createUserWithEmailAndPassword, // creates a new user account with an email address and password.
+  onAuthStateChanged, //  monitors changes in the authentication state of the user (logs in, logs out, etc)s
+  GoogleAuthProvider, // enables Google sign-in for your app
+  signInWithPopup, // method used to sign in a user using a popup window (third-party like Google)
 } from "firebase/auth";
 import { db } from "../config/firebase.js";
-import { collection, addDoc } from "firebase/firestore";
+import {
+  collection,
+  addDoc
+} from "firebase/firestore";
 import { auth } from "../config/firebase.js";
 import Layout from "../components/Layout/Layout.jsx";
 import Login from "../pages/Login.jsx";
