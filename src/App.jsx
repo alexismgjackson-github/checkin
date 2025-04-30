@@ -1,11 +1,12 @@
 import { useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router";
 import {
-  signInWithEmailAndPassword, // signs in a user using their email address and password.
-  createUserWithEmailAndPassword, // creates a new user account with an email address and password.
+  signInWithEmailAndPassword, // signs in a user using their email address and password
+  createUserWithEmailAndPassword, // creates a new user account with an email address and password
   onAuthStateChanged, //  monitors changes in the authentication state of the user (logs in, logs out, etc)s
-  GoogleAuthProvider, // enables Google sign-in for your app
+  GoogleAuthProvider, // enables Google sign-in for app
   signInWithPopup, // method used to sign in a user using a popup window (third-party like Google)
+  signOut, // logs user out of app
 } from "firebase/auth";
 import { db } from "../config/firebase.js";
 import {
