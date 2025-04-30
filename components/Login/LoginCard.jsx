@@ -115,6 +115,7 @@ export default function LoginCard({
                 type="button"
                 className="toggle-password-visibility-btn"
                 onClick={toggleLoginPasswordVisibility}
+                aria-label="Show or hide password text"
               >
                 {showLoginPassword ? "Hide Password" : "Show Password"}
               </button>
@@ -128,7 +129,12 @@ export default function LoginCard({
               required
             />
           </div>
-          <button className="login-btn">Log In</button>
+          <button
+            className="login-btn"
+            aria-label="Sign into app with your authorized user credentials"
+          >
+            Log In
+          </button>
           <p className="link-to-create-account">
             Don't have an account?{" "}
             <span className="create-account-link" onClick={handleClick}>
@@ -142,6 +148,7 @@ export default function LoginCard({
             src="./assets/icons/google.svg"
             alt="Google icon"
             className="google-icon"
+            aria-label="Sign into app with your Google account"
           />
           Continue with Google
         </button>

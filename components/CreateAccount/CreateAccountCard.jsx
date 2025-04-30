@@ -140,6 +140,7 @@ export default function CreateAccountCard({
                 type="button"
                 className="toggle-password-visibility-btn"
                 onClick={toggleCreateAcctPasswordVisibility}
+                aria-label="Show or hide password text"
               >
                 {showCreateAcctPassword ? "Hide Password" : "Show Password"}
               </button>
@@ -160,7 +161,12 @@ export default function CreateAccountCard({
               {passwordMessage}
             </span>
           </div>
-          <button className="create-account-btn">Sign Up</button>
+          <button
+            className="create-account-btn"
+            aria-label="Create an account with these user credentials"
+          >
+            Sign Up
+          </button>
           <p className="link-to-login">
             Already have an account?{" "}
             <span className="login-link" onClick={handleClick}>

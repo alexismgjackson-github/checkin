@@ -9,7 +9,7 @@ import {
   updateDoc, // modifies specific fields in an existing document without overwriting the entire document
   serverTimestamp, // sets a field to the server's current time - ensuring accurate and consistent timestamps
 } from "firebase/firestore";
-import { getAuth } from "firebase/auth"; 
+import { getAuth } from "firebase/auth";
 import { useNavigate } from "react-router";
 import CheckInForm from "../components/Home/CheckInForm";
 import CheckInListModal from "../components/Home/CheckInListModal";
