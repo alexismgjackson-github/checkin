@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import DefaultCheckInsListItem from "./DefaultCheckInsListItem";
 import EditingCheckInsListItem from "./EditingCheckInsListItem";
 import "./CheckInListModal.css";
@@ -23,6 +23,10 @@ export default function CheckInListModal({
 
   const CHECKINS_PER_PAGE = 5;
 
+  // creates a ref for the scroll container
+
+  const scrollWrapperRef = useRef(null);
+
   // calculates the total number of pages
 
   const totalPages = Math.ceil(checkIns.length / CHECKINS_PER_PAGE);
@@ -30,10 +34,8 @@ export default function CheckInListModal({
   // selects only the check-ins for the current page
 
   const paginatedCheckIns = checkIns.slice(
-    // gives the starting index of the current page
-    (currentPage - 1) * CHECKINS_PER_PAGE,
-    // gives the ending index of the current page
-    currentPage * CHECKINS_PER_PAGE
+    (currentPage - 1) * CHECKINS_PER_PAGE, // gives the starting index of the current page
+    currentPage * CHECKINS_PER_PAGE // gives the ending index of the current page
   );
 
   // defaults to page 1 when reopening the modal
@@ -43,6 +45,14 @@ export default function CheckInListModal({
       setCurrentPage(1);
     }
   }, [isOpen]);
+
+  // scrolls to top when currentPage changes
+
+  useEffect(() => {
+    if (scrollWrapperRef.current) {
+      scrollWrapperRef.current.scrollTop = 0;
+    }
+  }, [currentPage]);
 
   return (
     <>
@@ -67,7 +77,7 @@ export default function CheckInListModal({
               {checkIns.length} check-in(s) found
             </span>
           ) : null}
-          <div className="checkin-list-scroll-wrapper">
+          <div className="checkin-list-scroll-wrapper" ref={scrollWrapperRef}>
             {checkIns.length === 0 ? (
               <p className="no-checkins-message">It looks a little empty...</p>
             ) : (
