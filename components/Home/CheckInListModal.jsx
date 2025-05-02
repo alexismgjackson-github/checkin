@@ -27,7 +27,7 @@ export default function CheckInListModal({
 
   const scrollWrapperRef = useRef(null);
 
-  // calculates the total number of pages
+  // calculates the total number of pages (rounds up to include any remaining items that don't fill a complete page)
 
   const totalPages = Math.ceil(checkIns.length / CHECKINS_PER_PAGE);
 
