@@ -51,11 +51,17 @@ I wanted to build an app that allowed me to journal my mental health. Also, I wa
 - Managing check-ins
 - Managing selected emotion for submission
 - Managing modal open/close
+- Managing modal pagination
 
 ### _USEEFFECT_
 
 - Handling Firebase authentication state changes and ensuring check-ins are fetched when the user logs in
 - Handles UI behavior (disabling/enabling scrolling) based on the modal state
+- Defaults modal to page 1 when reopening it
+
+### _USEREF_
+
+- Scroll the check-ins list wrapper to the top when the user changes pages
 
 ### _RESPONSIVE WEB DESIGN_
 
@@ -78,5 +84,4 @@ I wanted to build an app that allowed me to journal my mental health. Also, I wa
 
 ## FUTURE UPDATES
 
-- Add pagination to modal
-- Add filter to modal
+- Add filtering to modal
