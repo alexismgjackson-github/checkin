@@ -7,6 +7,7 @@ Check-In is a fully responsive CRUD app allows the user to record daily mental h
 - CRUD
 - Emoji Bar
 - Check-Ins List Modal
+- Pagination
 
 ## TECHNOLOGIES
 
