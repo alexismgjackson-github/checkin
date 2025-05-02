@@ -126,8 +126,10 @@ export default function CheckInListModal({
             <div className="pagination-controls">
               <button
                 className="previous-check-ins-btn"
-                onClick={() => setCurrentPage((p) => Math.max(p - 1, 1))}
-                disabled={currentPage === 1}
+                onClick={() =>
+                  setCurrentPage((prevPage) => Math.max(prevPage - 1, 1))
+                } // when clicked, it decreases the page by 1
+                disabled={currentPage === 1} // prevents the button from working if user is already on the first page
               >
                 Previous
               </button>
@@ -137,9 +139,11 @@ export default function CheckInListModal({
               <button
                 className="next-check-ins-btn"
                 onClick={() =>
-                  setCurrentPage((p) => Math.min(p + 1, totalPages))
-                }
-                disabled={currentPage === totalPages}
+                  setCurrentPage((prevPage) =>
+                    Math.min(prevPage + 1, totalPages)
+                  )
+                } // increases the page by 1
+                disabled={currentPage === totalPages} // disables the button on the last page
               >
                 Next
               </button>
