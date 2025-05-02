@@ -41,7 +41,7 @@
   color: var(--color-medium);
   font-size: 1.4rem;
   font-weight: 600;
-  margin-bottom: 1rem;
+  margin: 1rem 0;
   text-align: center;
   text-transform: uppercase;
 }
@@ -64,28 +64,15 @@
   font-weight: 500;
 }
 
-/* Extra small devices (phones, 600px and down) */
-@media only screen and (max-width: 600px) {
-}
-
-/* Small devices (portrait tablets and large phones, 600px and up) */
-@media only screen and (min-width: 600px) {
-}
-
-/* Medium devices (landscape tablets, 768px and up) */
-@media only screen and (min-width: 768px) {
-}
-
 /* Large devices (laptops/desktops, 992px and up) */
 @media only screen and (min-width: 992px) {
+  .home-page-container {
+    padding-bottom: 1rem;
+  }
   .current-date {
     font-size: 1.6rem;
   }
   .current-feeling {
     font-size: 2.4rem;
   }
-}
-
-/* Extra large devices (large laptops and desktops, 1200px and up) */
-@media only screen and (min-width: 1200px) {
 }

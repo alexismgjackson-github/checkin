@@ -1,6 +1,5 @@
 import { useState } from "react";
 import CreateAccountCard from "../components/CreateAccount/CreateAccountCard";
-import "./CreateAccount.css";
 
 export default function CreateAccount({
   createUserWithEmailAndPassword,

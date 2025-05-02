@@ -1,6 +1,5 @@
 import { useState } from "react";
 import LoginCard from "../components/Login/LoginCard";
-import "./Login.css";
 
 export default function Login({
   signInWithEmailAndPassword,
