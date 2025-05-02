@@ -43,7 +43,7 @@
   margin-top: 2rem;
   max-height: calc(100vh - 10rem);
   overflow-y: auto;
-  padding-bottom: 10rem;
+  margin-bottom: 2rem;
 }
 
 .no-checkins-message {
@@ -99,10 +99,30 @@
   text-align: start;
 }
 
+.pagination-controls {
+  align-items: center;
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+  margin-top: 3rem;
+}
+
+.previous-check-ins-btn,
+.next-check-ins-btn {
+  width: fit-content;
+}
+
+.current-page {
+  font-size: 1.6rem;
+}
+
 /* Medium devices (landscape tablets, 768px and up) */
 @media only screen and (min-width: 768px) {
   .checkin-list-container {
     padding: 4rem 10rem;
+  }
+  .check-in-list-item-date {
+    font-size: 1.6rem;
   }
   .check-in-list-item-snippet {
     font-family: var(--font-secondary);
