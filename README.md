@@ -62,7 +62,7 @@ I wanted to build an app that allowed me to journal my mental health. Also, I wa
 
 ### _USEREF_
 
-- Scroll the check-ins list wrapper to the top when the user changes pages
+- Scroll to the top of the check-ins list wrapper when the user changes pages
 
 ### _RESPONSIVE WEB DESIGN_
 
