@@ -28,7 +28,7 @@
 }
 
 .checklist-count {
-  font-size: 2rem;
+  font-size: 2.2rem;
   font-weight: 600;
   margin-left: 0.25rem;
 }
@@ -39,8 +39,9 @@
 
 .current-date {
   color: var(--color-medium);
-  font-size: 1.4rem;
-  font-weight: 600;
+  font-size: 1.2rem;
+  font-style: italic;
+  font-weight: 500;
   margin: 1rem 0;
   text-align: center;
   text-transform: uppercase;
