@@ -123,31 +123,33 @@ export default function CheckInListModal({
                 ))}
               </ul>
             )}
-            <div className="pagination-controls">
-              <button
-                className="previous-check-ins-btn"
-                onClick={() =>
-                  setCurrentPage((prevPage) => Math.max(prevPage - 1, 1))
-                } // when clicked, it decreases the page by 1
-                disabled={currentPage === 1} // prevents the button from working if user is already on the first page
-              >
-                Previous
-              </button>
-              <span className="current-page">
-                Page {currentPage} of {totalPages}
-              </span>
-              <button
-                className="next-check-ins-btn"
-                onClick={() =>
-                  setCurrentPage((prevPage) =>
-                    Math.min(prevPage + 1, totalPages)
-                  )
-                } // increases the page by 1
-                disabled={currentPage === totalPages} // disables the button on the last page
-              >
-                Next
-              </button>
-            </div>
+            {checkIns.length > 0 && (
+              <div className="pagination-controls">
+                <button
+                  className="previous-check-ins-btn"
+                  onClick={() =>
+                    setCurrentPage((prevPage) => Math.max(prevPage - 1, 1))
+                  } // when clicked, it decreases the page by 1
+                  disabled={currentPage === 1} // prevents the button from working if user is already on the first page
+                >
+                  Previous
+                </button>
+                <span className="current-page">
+                  Page {currentPage} of {totalPages}
+                </span>
+                <button
+                  className="next-check-ins-btn"
+                  onClick={() =>
+                    setCurrentPage((prevPage) =>
+                      Math.min(prevPage + 1, totalPages)
+                    )
+                  } // increases the page by 1
+                  disabled={currentPage === totalPages} // disables the button on the last page
+                >
+                  Next
+                </button>
+              </div>
+            )}
           </div>
         </div>
       </div>
