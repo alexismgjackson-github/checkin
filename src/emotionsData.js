@@ -1,10 +1,12 @@
+// Export a default array of emotion objects used to represent different emotional states.
+// Each object contains metadata for displaying an emoji icon and its associated label.
 export default [
   {
-    id: "Satisfied",
-    emotion: "satisfied",
-    url: "./assets/icons/satisfied.svg",
-    alt: "Satisfied emoji",
-    label: "I'm feeling satisfied.",
+    id: "Satisfied", // Unique identifier for the emotion
+    emotion: "satisfied", // Emotion keyword (can be used for logic or styling)
+    url: "./assets/icons/satisfied.svg", // Path to the corresponding emoji icon
+    alt: "Satisfied emoji", // Alt text for accessibility
+    label: "I'm feeling satisfied.", // Descriptive label shown to users
   },
   {
     id: "Excited",

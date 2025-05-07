@@ -1,11 +1,9 @@
-// import the functions you need from the SDKs you need
-
+// Import core Firebase services used in the app
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 
-// web app's firebase configuration
-
+// Firebase configuration for this web app
 const firebaseConfig = {
   apiKey: "AIzaSyDKEpPv1EMmNwucl_QDdKwKaHLnsTMZFa8",
   authDomain: "check-in-7312f.firebaseapp.com",
@@ -16,11 +14,11 @@ const firebaseConfig = {
   measurementId: "G-FKPML1QZQ6",
 };
 
-// initialize Firebase
-
+// Initialize Firebase app instance
 export const app = initializeApp(firebaseConfig);
+
+// Set up Firebase Authentication
 export const auth = getAuth(app);
 
-// initialize cloud firestore and get a reference to the service
-
+// Set up Cloud Firestore and export the database instance
 export const db = getFirestore(app);
